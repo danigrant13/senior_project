@@ -1,0 +1,9 @@
+**/*.jpg
+**/*.JPG
+**/*.csv
+Old\ Files/
+description/
+**/*.pyc
+**/*.zip
+**/*.docx
+**/.DS_Store
