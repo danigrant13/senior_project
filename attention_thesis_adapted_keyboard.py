@@ -44,8 +44,8 @@ info = {
     '   Ethnicity': 'w', #w=white, l=latinx, b=black, a=asian
     '   Gender': 'f',
     '   Subject number':1,
-    ' Practice length (secs)':10,       #for experiment = 30 sec
-    ' Block length (secs)':10,          # for experiment = 120 sec
+    ' Practice length (secs)':30,       #for experiment = 30 sec
+    ' Block length (secs)':120,          # for experiment = 120 sec
     ' changeTrial length (secs)':10,
     'Date':time.strftime("%m-%d-%Y@%H.%M", time.localtime()),
     'Vowel probability':0.3,
@@ -305,6 +305,19 @@ demographicImages = {
     'lm': ['LM_1.jpg', 'LM_2.jpg', 'LM_3.jpg', 'LM_4.jpg', 'LM_5.jpg', 'LM_6.jpg', 'LM_7.jpg', 'LM_8.jpg', 'LM_5b.jpg']
 }
 
+demographicTargets = {
+    'pf': 0,
+    'pm': 0,
+    'wf': 1,
+    'wm': 3,
+    'bf': 3,
+    'bm': 4,
+    'af': 3,
+    'am': 0,
+    'lf': 1,
+    'lm': 0
+}
+
 targetList = [[0,3,1,2],
                   ['.', '.', '.', '.'],
                   ['.', '.', '.', '.'],
@@ -489,21 +502,14 @@ def noChangeTrial(blockNum):
     input = event.waitKeys(keyList = ['space','escape'])
     escapeInput(input)
     # set images
-    if blockNum<1:
-        rotateProb = 0.25           #no rotation bias on practice trials...
-        target = 0                  #...so it doesn't matter which image is the target
 
+    if blockNum<1:
         if gender == 'f':
             currentSet = demographicImages['pf']
         else:
             currentSet = demographicImages['pm']
-    #else:
-    #    rotateProb = rotateProbMatrix[0]
-        #randomly select current image set from unused image blocks
-
-        currentSet = demographicImages[demographicKey][:4] # take first four images 
-
-        target = 0
+    else:
+        currentSet = demographicImages[demographicKey][:4] # take first four images
         print 'currentSet: ', currentSet
         print 'target: ', target
         #update image textures
@@ -512,15 +518,7 @@ def noChangeTrial(blockNum):
     for x in imageList:
         x.setImage(currentSet[index])
         index += 1
-    
-    if target==0:
-        nonTargetList = [1,2,3]
-    elif target==1:
-        nonTargetList = [0,2,3]
-    elif target==2:
-        nonTargetList = [0,1,3]
-    elif target==3:
-        nonTargetList = [0,1,2]
+
     #draw initial images, start clocks, etc.
     for x in imageList:
         x.draw()
@@ -574,10 +572,8 @@ def noChangeTrial(blockNum):
             rotateClock.reset()
             rotating = True
             currentRotateInt = random.uniform(rotateMin, rotateMax)
-            if random.random()<=rotateProb:
-                currentRotator = target
-            else:
-                currentRotator = random.choice(nonTargetList)
+            currentRotator = random.choice([0, 1, 2, 3])
+            
         #update images
         if rotating:
             for x in imageList:
@@ -651,8 +647,6 @@ def changeTrial(whichChange,numberOfChanges):
         else:
             currentSet = demographicImages['pm']
             changeB = demographicImages['pm'][-1]
-
-
         changeA = currentSet[0]
         target = 0
     else:
@@ -660,9 +654,11 @@ def changeTrial(whichChange,numberOfChanges):
         rotateProb = ((changeTrialLength/((rotateMin+rotateMax)/2.0))/4.0 - numberOfChanges)/(changeTrialLength/((rotateMin+rotateMax)/2))
         print 'changeTrial rotateProb: ', rotateProb
         currentSet = demographicImages[demographicKey][4:8] # take second set of four images
-        changeA = currentSet[2]
-        changeB = currentSet[2]
-        target = 2
+        targetIndex = demographicTargets[demographicKey]
+
+        changeA = currentSet[targetIndex]
+        changeB = demographicImages[demographicKey][-1]
+        target = targetIndex
 
     a = True # changing image starts on "a" side
     #global currentRotator
@@ -824,6 +820,7 @@ def changeTrial(whichChange,numberOfChanges):
             trialInProgress = False
     win.flip()
     core.wait(0.5)
+
 #                                         changeQuiz function                                       ########################
 def changeQuiz():
     quiz1 = visual.TextStim(win,'Did one of the images change during this trial?\n\nPress the "Y" key for yes.' +
