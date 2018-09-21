@@ -40,13 +40,12 @@ def translate(x):
 #                                           Initialization                     #################
 #dialogue box for experimenter to enter age, gender, subject number, condition, & other variables
 info = {
-    '   Age':22,
-    '   Ethnicity': 'w', #w=white, l=latinx, b=black, a=asian
-    '   Gender': 'f',
+    '   Age': 0,
+    '   Group': '0', #group can equal 1, 2, 3, 4, 5
+    '   Gender': 'f', #must be male or female
     '   Subject number':1,
     ' Practice length (secs)':30,       #for experiment = 30 sec
     ' Block length (secs)':120,          # for experiment = 120 sec
-    ' changeTrial length (secs)':10,
     'Date':time.strftime("%m-%d-%Y@%H.%M", time.localtime()),
     'Vowel probability':0.3,
     'Letter change interval (secs)':2.75,
@@ -61,9 +60,9 @@ if not infoDlg.OK:
     core.quit()
 #extract variables from dictionary
 gender = info['   Gender']
-ethnicity = info['   Ethnicity']
+group = info['   Group']
 
-demographicKey = ethnicity.lower() + gender.lower()
+demographicKey = group.lower() + gender.lower()
 
 vowelProb = info['Vowel probability']
 interval = info['Letter change interval (secs)']
@@ -72,12 +71,11 @@ rotateMin = info['Min rotation interval (secs)']
 rotateMax = info['Max rotation interval (secs)']
 pracLength = info[' Practice length (secs)']
 blockLength = info[' Block length (secs)']
-changeTrialLength =info[' changeTrial length (secs)']
 letterPause = info['Letter blink duration (secs)']
 
-#check between ethnicity for b,l,a,w format
-if ethnicity not in ['b', 'l', 'a', 'w']:
-    print 'Error: ethnicity must be one of b, l, a, or w!'
+#check if group is in range 1-5
+if group not in ['1', '2', '3', '4', '5']:
+    print 'Error: group must be one of 1, 2, 3, 4, or 5!'
     print 'Subject number was set to: ' + str(info['   Subject number'])
     core.quit()
  
@@ -107,10 +105,12 @@ demoPicB = 'demo_b.jpg'
 #define welcome screen
 win = visual.Window([1400,800],rgb=(-1,-1,-1),allowGUI=False,winType='pyglet')      #changed from (1600,900)
 welcome = visual.TextStim(win, 'Welcome to the experiment!' +
-    '\npress the SPACE key to begin.' +
-    '\n\n(Experimenter: press escape to quit.)')
+    '\n' +
+    'press the SPACE key to begin.' +
+    '\n\n' +
+    '(Experimenter: press escape to quit.)')
 #display welcome screen
-welcome.draw();
+welcome.draw()
 win.flip()
 # wait for user input -- close experiment if 'escape'
 input = event.waitKeys()
@@ -120,42 +120,52 @@ escapeInput(input)
 instructions1 = visual.TextStim(win,'In this experiment, you will be presented' +
     ' with a steady stream of letters at the center of the screen, surrounded by 4' +
     ' images which will periodically rotate and sometimes change to a new image.' +
-    '\n\nThe basic visual of each trial will be something like this:' +
-    '\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPress the SPACE key to advance to ' +
+    '\n\n' +
+    'The basic visual of each trial will be something like this:' +
+    '\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n' +
+    'Press the SPACE key to advance to ' +
     'the next screen and continue reading the instructions.',
     pos=[0, 0],height=0.06,wrapWidth=1.5)
 layout = visual.ImageStim(win, image=introImage, mask=None, units='norm', pos=[0, -0.1], size=[0.88, 1.0])
+
 #display instruction screen 1
 instructions1.draw()
 layout.draw()
 win.flip()
+
 # wait for user input -- close experiment if 'escape'
 input = event.waitKeys(keyList = ['escape', 'space'])
 escapeInput(input)
+
 # define instrucion screen 2
 demoPic = visual.ImageStim(win, image=demoPicA, mask=None, units='norm', pos=[0,-0.1], size=[0.45,0.6])
 instructions1 = visual.TextStim(win,'You have two tasks during this experiment:',
     pos=[0,0.85],height=0.06,wrapWidth=1.5)
+
 instructions2 = visual.TextStim(win, '1. Press the SHIFT key whenever the letter' +
     ' currently displayed in the center of the screen is a VOWEL. For example, you' +
     ' should press the key if the letter "a" appears on the screen, but not the letter "f".' +
     '\n\n' +
     '2. Each time an image rotates, there is a small chance that it will change to a similar' +
-    ' but different image. At the end of each experimental trial, you will be asked how many image' +
-    ' changes there were during the trial.',
+    '   but different image. At the end of each experimental trial, you will be asked how many image' +
+    '   changes there were during the trial.',
     pos=[0,0.50],height=0.06,wrapWidth=1.3)
+
 instructions3 = visual.TextStim(win,'The above image will demonstrate what you are looking for each' +
     ' time an image rotates. Press the SPACE key to watch the image rotate and change to a new image.',
     pos=[0,-0.65],height=0.06,wrapWidth=1.5)
+
 #display instruction screen 2
 demoPic.draw()
 instructions1.draw()
 instructions2.draw()
 instructions3.draw()
 win.flip()
+
 #wait for key press -- abort on escape
 input = event.waitKeys()
 escapeInput(input)
+
 #loop that changes from demo image A to B
 gettingInput = True
 a = True
@@ -175,31 +185,41 @@ while gettingInput:
         instructions2.draw()
         instructions3.draw()
         win.flip()
+
     #define instructions screen 3
-    instructions3.setText("To rotate and change the image again, press the BACK key." +
-        "\n\nCan you find what is changing in the picture above each time the image rotates?" +
-        "\nPress the SPACE key to find out...")
+    instructions3.setText('To rotate and change the image again, press the BACK key.' +
+        '\n\n' +
+        'Can you find what is changing in the picture above each time the image rotates?' +
+        '\n' +
+        'Press the SPACE key to find out...')
+
     #display instructions screen 1-3
     demoPic.draw()
     instructions1.draw()
     instructions2.draw()
     instructions3.draw()
     win.flip()
+
     #wait for key press -- if 'escape' pressed close program
     input = event.waitKeys()
     escapeInput(input)
     if 'space' in input:
         gettingInput = False
+
 # introduction screen 3
 instructions3 = visual.TextStim(win,'ANSWER: Pay attention to the man\'s eyebrows.' +
-    '\n The image flips 180 degrees while rotating.' +
-    '\n\nPress the BACK key to rotate the image.',
+    '\n' +
+    'The image flips 180 degrees while rotating.' +
+    '\n\n' +
+    'Press the BACK key to rotate the image.',
     pos=[0,-0.65],height=0.06,wrapWidth=1.5)
+
 demoPic.draw()
 instructions1.draw()
 instructions2.draw()
 instructions3.draw()
 win.flip()
+
 #wait for user input, if 'escape' close program
 input = event.waitKeys()
 escapeInput(input)
@@ -215,29 +235,41 @@ while gettingInput:
             else:
                 demoPic.setImage(demoPicA)
                 a = True
+        
         demoPic.draw()
         instructions1.draw()
         instructions2.draw()
         instructions3.draw()
         win.flip()
+    
     instructions3.setText('ANSWER: Pay attention to the man\'s eyebrows.' +
-    '\n The image flips 180 degrees while rotating.' +
-    '\n\nPress the BACK key to rotate the image.' +
-        "\nWhen you have finished reading the instructions on this screen, press the SPACE key to advance"+
-        " to the next screen." +
-        "\nDon't worry if you don't fully understand both of the tasks yet. We will" +
-        "explain them more on the next screen, and you will also get a chance to practice before starting" +
-        " the main experiment.")
+        '\n' +
+        'The image flips 180 degrees while rotating.' +
+        '\n\n' +
+        'Press the BACK key to rotate the image.',
+        pos=[0,-0.65],height=0.06,wrapWidth=1.5)
+
+    instructions4 = visual.TestStim(win,'\nWhen you have finished reading the instructions on this screen,' +
+        ' press the SPACE key to advance to the next screen.' +
+        '\n' +
+        'Don\'t worry if you don\'t fully understand both of the tasks yet. We will' +
+        'explain them more on the next screen, and you will also get a chance to practice before starting' +
+        ' the main experiment.')
+
     demoPic.draw()
     instructions1.draw()
     instructions2.draw()
     instructions3.draw()
+    instructions4.daw()
     win.flip()
+
     #wait for key press -- abort on escape
     input = event.waitKeys()
     escapeInput(input)
+   
     if 'space' in input:
         gettingInput = False
+
 # instruction screen 4
 def screen4():
     instructions4 = visual.TextStim(win,'Many of the image changes that you will be looking for can be' +
@@ -256,8 +288,10 @@ def screen4():
         '\n\n\n\n' +
         'Press the SPACE key to continue reading the instructions.',
         pos=[0, 0], height=0.06, wrapWidth=1.5)
+   
     instructions4.draw()
     win.flip()
+
 # instruction screen 5
 def screen5():
     instructions4 = visual.TextStim(win,'\n\n\n\n' +
@@ -294,8 +328,8 @@ while currentScreen < 2:
 
 demographicImages = {
     'pf': ['PF_1.jpg', 'PF_2.jpg', 'PF_3.jpg', 'PF_4.jpg', 'PF_1b.jpg'],
-    'pm': ['PM_1.jpg', 'PM_2.jpg', 'PM_3.jpg', 'PM_4.jpg', 'PM_2b.jpg'],
-    'wf': ['WF_1.jpg', 'WF_2.jpg', 'WF_3.jpg', 'WF_4.jpg', 'WF_5.jpg', 'WF_6.jpg', 'WF_7.jpg', 'WF_8.jpg', 'WF_6b.jpg'],
+    'pm': ['PM_1.jpg', 'PM_2.jpg', 'PM_3.jpg', 'PM_4.jpg', 'PM_1b.jpg'],
+    'wf': ['F_1.jpg', 'WF_2.jpg', 'WF_3.jpg', 'WF_4.jpg', 'WF_5.jpg', 'WF_6.jpg', 'WF_7.jpg', 'WF_8.jpg', 'WF_6b.jpg'],
     'wm': ['WM_1.jpg', 'WM_2.jpg', 'WM_3.jpg', 'WM_4.jpg', 'WM_5.jpg', 'WM_6.jpg', 'WM_7.jpg', 'WM_8.jpg', 'WM_7b.jpg'],
     'bf': ['BF_1.jpg', 'BF_2.jpg', 'BF_3.jpg', 'BF_4.jpg', 'BF_5.jpg', 'BF_6.jpg', 'BF_7.jpg', 'BF_8.jpg', 'BF_7b.jpg'],
     'bm': ['BM_1.jpg', 'BM_2.jpg', 'BM_3.jpg', 'BM_4.jpg', 'BM_5.jpg', 'BM_6.jpg', 'BM_7.jpg', 'BM_8.jpg' 'BM_8b.jpg'],
@@ -491,18 +525,21 @@ def noChangeTrial(blockNum):
     a = True
     #global currentRotator
     # reminder to locate VOWEL key = 'lshift'
+    
     remind = visual.TextStim(win,'About to begin trial ' + str(trialNum) +
     '\n\n' +
     'Please take this moment to locate the SHIFT key on the keyboard.' +
     '\n\n' +
     'When ready, press the SPACE key to begin the trial.',
     pos=[0, 0], height=0.06, wrapWidth=1.5)
+    
     remind.draw()
     win.flip()
+    
     input = event.waitKeys(keyList = ['space','escape'])
     escapeInput(input)
+   
     # set images
-
     if blockNum<1:
         if gender == 'f':
             currentSet = demographicImages['pf']
@@ -633,193 +670,6 @@ def noChangeTrial(blockNum):
             trialInProgress = False
     win.flip()
     core.wait(0.5)
-#                                 changeTrial function                                  #################
-def changeTrial(whichChange,numberOfChanges):
-    #reset variables
-    changedOnce = changedTwice = forceChange = letterRefresh = feedbackRefresh = rotating = displayRight = displayWrong = letterRight = letterWrong = missFlag = quizQuestions = letterMissed = letterCleared = changed = False
-    global currentSet, mistakes, successes, currentRotator, changeA, changeB, target, trialNum
-    mistakes = successes = 0.0
-    if whichChange<0:
-        rotateProb = 0.0 #correct target rotation probablity on short practice trial by forcing to 0
-        if gender == 'f':
-            currentSet = demographicImages['pf']
-            changeB = demographicImages['pf'][-1]
-        else:
-            currentSet = demographicImages['pm']
-            changeB = demographicImages['pm'][-1]
-        changeA = currentSet[0]
-        target = 0
-    else:
-        # correct rotation probability to account for forced target changes
-        rotateProb = ((changeTrialLength/((rotateMin+rotateMax)/2.0))/4.0 - numberOfChanges)/(changeTrialLength/((rotateMin+rotateMax)/2))
-        print 'changeTrial rotateProb: ', rotateProb
-        currentSet = demographicImages[demographicKey][4:8] # take second set of four images
-        targetIndex = demographicTargets[demographicKey]
-
-        changeA = currentSet[targetIndex]
-        changeB = demographicImages[demographicKey][-1]
-        target = targetIndex
-
-    a = True # changing image starts on "a" side
-    #global currentRotator
-    currentRotateInt = random.uniform(rotateMin, rotateMax)
-    # reminder to locate VOWEL key
-    remind = visual.TextStim(win,'About to begin trial ' + str(trialNum) +
-    '\n\nPlease take this moment to locate the SHIFT key on the keyboard.' +
-    '\n\nWhen ready, press the SPACE key to begin the trial.',
-    pos=[0, 0], height=0.06, wrapWidth=1.5)
-    remind.draw()
-    win.flip()
-    input = event.waitKeys(keyList = ['space','escape'])
-    escapeInput(input)
-    #draw initial images, reset clocks, etc.
-
-    print 'currentSet: ', currentSet
-    print 'target: ', target
-    #update image textures
-    index = 0
-    for x in imageList:
-        x.setImage(currentSet[index])
-        index += 1
-
-    if target==0:
-        nonTargetList = [1,2,3]
-    elif target==1:
-        nonTargetList = [0,2,3]
-    elif target==2:
-        nonTargetList = [0,1,3]
-    elif target==3:
-        nonTargetList = [0,1,2]
-    for x in imageList:
-        x.draw()
-    globalClock = core.Clock()
-    letterClock = core.Clock()
-    rotateClock = core.Clock()
-    letter = visual.TextStim(win)
-    right = visual.ImageStim(win,image='right.png',mask=None,units='norm',pos=[0,-0.5],size=[0.2,0.2])
-    wrong = visual.ImageStim(win,image='wrong.png',mask=None,units='norm',pos=[0,-0.5],size=[0.2,0.2])
-    if random.random()<=vowelProb:
-        letter.setText(random.choice(vowelList))
-        isVowel = True
-    else:
-        letter.setText(random.choice(consList))
-        isVowel = False
-    letter.draw()
-    win.flip()
-    #begin trial
-    if whichChange<0:
-        duration = pracLength
-    else:
-        duration = changeTrialLength
-    trialInProgress = True
-    while trialInProgress:
-        #update orientation
-        if rotating:
-            imageList[currentRotator].setOri(imageList[currentRotator].ori+speed)
-            if forceChange:
-                if imageList[currentRotator].ori==180:
-                    if a:
-                        imageList[currentRotator].setImage(changeB)
-                        a = False
-                    else:
-                        imageList[currentRotator].setImage(changeA)
-                        a = True
-                    forceChange = False
-        #check for letter change
-        if letterClock.getTime()>=interval:
-            letterClock.reset()
-            letterRefresh = True
-            letterCleared = False
-            if isVowel and not letterRight:
-                mistakes+=1
-                letterMissed = True
-            displayRight = displayWrong = letterRight = letterWrong = False
-            if random.random()<=vowelProb:
-                oldLetter = letter.text
-                while letter.text==oldLetter:
-                    letter.setText(random.choice(vowelList))
-                isVowel = True
-            else:
-                oldLetter = letter.text
-                while letter.text==oldLetter:
-                    letter.setText(random.choice(consList))
-                isVowel = False
-        #check for new rotation
-        if rotateClock.getTime()>=currentRotateInt:
-            rotateClock.reset()
-            rotating = True
-            currentRotateInt = random.uniform(rotateMin, rotateMax)
-            if forceChange:
-                currentRotator = target
-            else:
-                if random.random()<=rotateProb:
-                    currentRotator = target
-                else:
-                    currentRotator = random.choice(nonTargetList)
-        #update images
-        if rotating:
-            for x in imageList:
-                x.draw()
-            letter.draw()
-            if letterWrong or letterMissed:
-                wrong.draw()
-            if letterRight:
-                right.draw()
-            win.flip()
-        elif letterRefresh:
-            if letterClock.getTime()>=letterPause:
-                for x in imageList:
-                    x.draw()
-                letter.draw()
-                letterRefresh = False
-                win.flip()
-            elif not letterCleared:
-                letterCleared = True
-                for x in imageList:
-                    x.draw()
-                if letterMissed:
-                    wrong.draw()
-                win.flip()
-        elif displayRight:
-            for x in imageList:
-                x.draw()
-            letter.draw()
-            right.draw()
-            win.flip()
-        elif displayWrong:
-            for x in imageList:
-                x.draw()
-            letter.draw()
-            wrong.draw()
-            win.flip()
-        #refresh image update flags
-        if imageList[currentRotator].ori==360:
-            imageList[currentRotator].setOri(0)
-            rotating = False
-        if letterClock.getTime()>letterPause:
-            letterMissed = False
-        if globalClock.getTime()>=duration/(numberOfChanges+1.0) and not changedOnce and not rotating:
-            forceChange = changedOnce = True
-        if numberOfChanges>1:
-            if globalClock.getTime()>=duration*((numberOfChanges)/(numberOfChanges+1.0)) and not changedTwice and not rotating:
-                forceChange = changedTwice = True
-        displayRight = displayWrong = False
-        #continually check for key presses
-        input = event.getKeys(keyList = ['lshift'], timeStamped=globalClock)
-        if len(input)>0:
-            if isVowel and not letterRight:
-                successes+=1
-                displayRight = True
-                letterRight = True
-            elif not isVowel and not letterWrong:
-                mistakes+=1
-                displayWrong = True
-                letterWrong = True
-        #check for end of trial
-        if globalClock.getTime()>duration:
-            trialInProgress = False
-    win.flip()
-    core.wait(0.5)
 
 #                                         changeQuiz function                                       ########################
 def changeQuiz():
@@ -849,7 +699,9 @@ def changeQuiz():
                 gettingInput = False
                 quizQuestions = True
     if quizQuestions:
-        quiz1.setText('Which image changed during the trial?\n\nPress the letter key that corresponds to the image.')
+        quiz1.setText('Which image changed during the trial?' +
+            '\n\n' +
+            'Press the letter key that corresponds to the image.')
         quiz1.draw()
         for x in imageList:
             x.draw()
@@ -1040,7 +892,7 @@ def feedback(numOfChanges):
 #(float = numberOfChanges = 1.0 or 2.0)
 isPractice = True
 trialNum = '[PRACTICE]'
-changeTrial(-1, 2.0)
+noChangeTrial(1)
 # gather ratings of images (boolean = practice trial?)
 gatherRatings(True)
 #quiz on image changes
@@ -1065,42 +917,56 @@ pointTotal = 0
 # instructions page 1
 def screen1(numTrials):
     instructions = visual.TextStim(win,'You will now begin the main part of the experiment.' +
-        '\n\nYour task in this part of the experiment is going to be just the same as it was'+
+        '\n\n'
+        +'Your task in this part of the experiment is going to be just the same as it was'+
         ' during the practice trials. The experiment consists of a series of ' +
         "{}".format(numTrials) +
         ' trials just like the practice trials that you completed, except somewhat longer.' +
         ' They will take a total of approximately 30 minutes to complete.' +
-        '\n\nThe only difference here is that on these trials you will be awarded a certain amount' +
+        '\n\n' +
+        'The only difference here is that on these trials you will be awarded a certain amount' +
         ' of POINTS based on your performance each trial. Your goal is to gain as many points as possible' +
         ' over the course of the experiment.' +
-        '\n\nOn the next screen we will explain the point scoring system in more detail.' +
-        '\n\n\n\nPress the SPACE key to advance to the next screen and continue reading the instructions.',
-pos=[0, 0],height=0.06,wrapWidth=1.6)
+        '\n\n' +
+        'On the next screen we will explain the point scoring system in more detail.' +
+        '\n\n\n\n' +
+        'Press the SPACE key to advance to the next screen and continue reading the instructions.',
+        pos=[0, 0],height=0.06,wrapWidth=1.6)
+    
     instructions.draw()
     win.flip()
+
 # instructions page 2
 def screen2():
     instructions = visual.TextStim(win, '\n\n\n\n***Points for the vowel task:***' +
-        '\n\nThe points earned for the vowel task are based on the total number of correct responses' +
+        '\n\n' +
+        'The points earned for the vowel task are based on the total number of correct responses' +
         ' (responses that cause the green check mark to appear) and incorrect responses (responses that' +
         ' cause the red X to appear) that you make.' +
-        '\n\nFirst the number of incorrect responses that you make is multiplied by 2.' +
-        '\n\nThen the number of points that you earn from the vowel task is the proportion of correct responses to total' +
+        '\n\n' + 
+        'First the number of incorrect responses that you make is multiplied by 2.' +
+        '\n\n' +
+        'Then the number of points that you earn from the vowel task is the proportion of correct responses to total' +
         ' responses, scaled from 0 points to 50 points.' +
-        '\n\nFor example, if you made 10 correct responses and 5 incorrect responses, your proportion of correct responses' +
+        '\n\n' +
+        'For example, if you made 10 correct responses and 5 incorrect responses, your proportion of correct responses' +
         ' would be 10 / (10 + 5*2) = 0.5, so you would earn 25 out of 50 points for the vowel task.' +
-        '\n\n\n\nPress the SPACE key to continue reading the instructions.',
+        '\n\n\n\n' +
+        'Press the SPACE key to continue reading the instructions.',
         pos=[0, 0],height=0.06,wrapWidth=1.6)
     instructions.draw()
     win.flip()
 # instructions page 3
 def screen3():
     instructions = visual.TextStim(win, '\n\n***Points for the image change task:***' +
-        '\n\nThe points earned for the image change task are based on whether you correctly answered whether or ' +
+        '\n\n' +
+        'The points earned for the image change task are based on whether you correctly answered whether or ' +
         'not there were any image changes during the trial, and if there were, whether you correctly identified ' +
         'the image that changed and also gave the correct number of total image changes.' +
-        '\n\nThe exact numbers of points earned for each possible response are listed in the table below:' +
-        '\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPress the SPACE key to continue reading the instructions.',
+        '\n\n' +
+        'The exact numbers of points earned for each possible response are listed in the table below:' +
+        '\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n' +
+        'Press the SPACE key to continue reading the instructions.',
         pos=[0, 0],height=0.06,wrapWidth=1.6)
     changePoints = visual.ImageStim(win, image='changePoints.bmp', mask=None, units='norm', pos=[-.1, -0.25], size=[0.88, 1])
     instructions.draw()
@@ -1109,19 +975,23 @@ def screen3():
 # instructions page 4
 def screen4():
     instructions = visual.TextStim(win,'\n\n\n\nAt the end of each trial, the points that you earn on both the SHIFT '+
-    'TASK and the IMAGE CHANGE TASK are added together to give the total number of points earned on that trial. Both '+
-    'tasks award a maximum of 50 points each. So the maximum number of points that you can earn on each trial is 100 points.' +
-        '\n\nOnly by being as accurate as possible on both the VOWEL TASK and the IMAGE CHANGE TASK can you maximize the amount ' +
+        'TASK and the IMAGE CHANGE TASK are added together to give the total number of points earned on that trial. Both '+
+        'tasks award a maximum of 50 points each. So the maximum number of points that you can earn on each trial is 100 points.' +
+        '\n\n' +
+        'Only by being as accurate as possible on both the VOWEL TASK and the IMAGE CHANGE TASK can you maximize the amount ' +
         'of points that you earn. No other strategy (like strategically only answering "Yes" or always answering "No" on the image '+
         'change task) will give you the most points.' +
-        '\n\n\n\nWhen you are ready, press the SHIFT key to finish the instructions and advance to the first trial.',
+        '\n\n\n\n' +
+        'When you are ready, press the SHIFT key to finish the instructions and advance to the first trial.',
         pos=[0, 0],height=0.06,wrapWidth=1.6)
+ 
     instructions.draw()
     win.flip()
+
 #block trials
 blocks = [
-    {'change':True, "whichChange":2, "numOfChanges":1.0, "feedback":1}
-]   #block 2       changeTrial = True
+    {"blockNum":1,"feedback":1}
+]    
 # cycle through instruction screens
 screens = [lambda: screen1(len(blocks)), screen2, screen3, screen4]
 currentScreen = 0
@@ -1139,13 +1009,8 @@ while currentScreen < 4:
 #                                       Begin block loop                           ###################
 for index,block in enumerate(blocks, 1):
     trialNum = index
-    if block["change"]:
-        #int = whichChange; -1 = practice trial, 0 = first change trial, 1 = second change trial)
-        #float = numberOfChanges; 1.0 or 2.0
-        changeTrial(block["whichChange"],block["numOfChanges"])
-    else:
         #int = blockNum; 0=practice, 1, 2, or 3
-        noChangeTrial(block["blockNum"])
+    noChangeTrial(block["blockNum"])
     #gather ratings of images (boolean = practice trial?)
     gatherRatings(False)
     #quiz on image changes
@@ -1153,21 +1018,31 @@ for index,block in enumerate(blocks, 1):
     #display feedback & wait
     #int = number of changes
     feedback(block["feedback"])
+
+
 #                                       Begin Dictator Game                         ###################
 # define instruction screen 1
 instructions1 = visual.TextStim(win, 'Next, you and the other participant are going to play a different game.\n' +
-    ' In this game, there are two roles: First Mover and Second Mover.\n' +
-    ' You and the other participant will be randomly assigned to one of these two roles.\n' +
+    ' In this game, there are two roles: First Mover and Second Mover.' +
+    '\n' +
+    ' You and the other participants will be randomly assigned to one of these two roles.' +
+    '\n' +
     ' The role you are assigned will determine the kinds of actions you can perform in the game.' +
-    '\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPress the SPACE key to advance to ' +
+    '\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n' +
+    'Press the SPACE key to advance to ' +
     'the next screen and continue reading the instructions.',
     pos=[0, 0],height=0.06,wrapWidth=1.5)
+
 image0 = visual.ImageStim(win,image='AF_1.jpg',mask=None,units='norm',pos=[-0.7,0.7],size=[0.375,0.5])
 image1 = visual.ImageStim(win,image='AF_2.jpg',mask=None,units='norm',pos=[0.7,0.7],size=[0.375,0.5])
+
 #display instruction screen 1
 instructions1.draw()
 layout.draw()
 win.flip()
+
+
+
 
 #                                                    Write data, End experiment            ######################
 # trial list
@@ -1215,6 +1090,7 @@ win.flip()
 # close data file
 # dataFile.close()
 # end experiment instruction screen
+
 goodbye = visual.TextStim(win,'You have completed the the experiment.' +
     '\n\nYour final average of points per trial is: ' + str(round((pointTotal/trialNum), 2)) + ' / 100' +  #
     '\n\nWhen you are ready, press the SPACE key to close the program.',
