@@ -63,7 +63,7 @@ gender = info['   Gender']
 group = info['   Group']
 
 demographicKey = group.lower() + gender.lower()
-
+print demographicKey
 vowelProb = info['Vowel probability']
 interval = info['Letter change interval (secs)']
 speed = info['Rotation speed (degrees/frame)']
@@ -246,10 +246,9 @@ while gettingInput:
         '\n' +
         'The image flips 180 degrees while rotating.' +
         '\n\n' +
-        'Press the BACK key to rotate the image.',
-        pos=[0,-0.65],height=0.06,wrapWidth=1.5)
+        'Press the BACK key to rotate the image.')
 
-    instructions4 = visual.TestStim(win,'\nWhen you have finished reading the instructions on this screen,' +
+    instructions4 = visual.TextStim(win,'\nWhen you have finished reading the instructions on this screen,' +
         ' press the SPACE key to advance to the next screen.' +
         '\n' +
         'Don\'t worry if you don\'t fully understand both of the tasks yet. We will' +
@@ -260,7 +259,7 @@ while gettingInput:
     instructions1.draw()
     instructions2.draw()
     instructions3.draw()
-    instructions4.daw()
+    instructions4.draw()
     win.flip()
 
     #wait for key press -- abort on escape
@@ -327,16 +326,16 @@ while currentScreen < 2:
 #                             Define miscellanious variables                         ################
 
 demographicImages = {
-    'pf': ['PF_1.jpg', 'PF_2.jpg', 'PF_3.jpg', 'PF_4.jpg', 'PF_1b.jpg'],
-    'pm': ['PM_1.jpg', 'PM_2.jpg', 'PM_3.jpg', 'PM_4.jpg', 'PM_1b.jpg'],
-    'wf': ['F_1.jpg', 'WF_2.jpg', 'WF_3.jpg', 'WF_4.jpg', 'WF_5.jpg', 'WF_6.jpg', 'WF_7.jpg', 'WF_8.jpg', 'WF_6b.jpg'],
-    'wm': ['WM_1.jpg', 'WM_2.jpg', 'WM_3.jpg', 'WM_4.jpg', 'WM_5.jpg', 'WM_6.jpg', 'WM_7.jpg', 'WM_8.jpg', 'WM_7b.jpg'],
-    'bf': ['BF_1.jpg', 'BF_2.jpg', 'BF_3.jpg', 'BF_4.jpg', 'BF_5.jpg', 'BF_6.jpg', 'BF_7.jpg', 'BF_8.jpg', 'BF_7b.jpg'],
-    'bm': ['BM_1.jpg', 'BM_2.jpg', 'BM_3.jpg', 'BM_4.jpg', 'BM_5.jpg', 'BM_6.jpg', 'BM_7.jpg', 'BM_8.jpg' 'BM_8b.jpg'],
-    'af': ['AF_1.jpg', 'AF_2.jpg', 'AF_3.jpg', 'AF_4.jpg', 'AF_5.jpg', 'AF_6.jpg', 'AF_7.jpg', 'AF_8.jpg', 'AF_7b.jpg'],
-    'am': ['AM_1.jpg', 'AM_2.jpg', 'AM_3.jpg', 'AM_4.jpg', 'AM_5.jpg', 'AM_6.jpg', 'AM_7.jpg', 'AM_8.jpg', 'AM_5b.jpg'],
-    'lf': ['LF_1.jpg', 'LF_2.jpg', 'LF_3.jpg', 'LF_4.jpg', 'LF_5.jpg', 'LF_6.jpg', 'LF_7.jpg', 'LF_8.jpg', 'LF_6b.jpg'],
-    'lm': ['LM_1.jpg', 'LM_2.jpg', 'LM_3.jpg', 'LM_4.jpg', 'LM_5.jpg', 'LM_6.jpg', 'LM_7.jpg', 'LM_8.jpg', 'LM_5b.jpg']
+    '1f': ['PF_1.jpg', 'PF_2.jpg', 'PF_3.jpg', 'PF_4.jpg', 'PF_1b.jpg'],
+    '1m': ['PM_1.jpg', 'PM_2.jpg', 'PM_3.jpg', 'PM_4.jpg', 'PM_1b.jpg'],
+    '2f': ['F_1.jpg', 'WF_2.jpg', 'WF_3.jpg', 'WF_4.jpg', 'WF_5.jpg', 'WF_6.jpg', 'WF_7.jpg', 'WF_8.jpg', 'WF_6b.jpg'],
+    '2m': ['WM_1.jpg', 'WM_2.jpg', 'WM_3.jpg', 'WM_4.jpg', 'WM_5.jpg', 'WM_6.jpg', 'WM_7.jpg', 'WM_8.jpg', 'WM_7b.jpg'],
+    '3f': ['BF_1.jpg', 'BF_2.jpg', 'BF_3.jpg', 'BF_4.jpg', 'BF_5.jpg', 'BF_6.jpg', 'BF_7.jpg', 'BF_8.jpg', 'BF_7b.jpg'],
+    '3m': ['BM_1.jpg', 'BM_2.jpg', 'BM_3.jpg', 'BM_4.jpg', 'BM_5.jpg', 'BM_6.jpg', 'BM_7.jpg', 'BM_8.jpg' 'BM_8b.jpg'],
+    '4f': ['AF_1.jpg', 'AF_2.jpg', 'AF_3.jpg', 'AF_4.jpg', 'AF_5.jpg', 'AF_6.jpg', 'AF_7.jpg', 'AF_8.jpg', 'AF_7b.jpg'],
+    '4m': ['AM_1.jpg', 'AM_2.jpg', 'AM_3.jpg', 'AM_4.jpg', 'AM_5.jpg', 'AM_6.jpg', 'AM_7.jpg', 'AM_8.jpg', 'AM_5b.jpg'],
+    '5f': ['LF_1.jpg', 'LF_2.jpg', 'LF_3.jpg', 'LF_4.jpg', 'LF_5.jpg', 'LF_6.jpg', 'LF_7.jpg', 'LF_8.jpg', 'LF_6b.jpg'],
+    '5m': ['LM_1.jpg', 'LM_2.jpg', 'LM_3.jpg', 'LM_4.jpg', 'LM_5.jpg', 'LM_6.jpg', 'LM_7.jpg', 'LM_8.jpg', 'LM_5b.jpg']
 }
 
 demographicTargets = {
@@ -899,7 +898,7 @@ gatherRatings(True)
 changeQuiz()
 #display feedback
 #(integer = number of changes)
-feedback(2)
+feedback(0)
 #                                   Experiment Block - WITH CHANGES                            #################
 #run trial (int = blockNum? 0=practice, 1, 2, or 3)
 trialNum = '[PRACTICE]'
@@ -990,7 +989,7 @@ def screen4():
 
 #block trials
 blocks = [
-    {"blockNum":1,"feedback":1}
+    {"blockNum":1,"feedback":0}
 ]    
 # cycle through instruction screens
 screens = [lambda: screen1(len(blocks)), screen2, screen3, screen4]
