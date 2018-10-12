@@ -1,4 +1,5 @@
-from modules import demoTrial, initialize, practiceTrial, controlTrial, experimentTrial, practiceTrustGame
+from modules import demoTrial, initialize, practiceTrial, controlTrial,\
+                    experimentTrial, practiceTrustGame, experimentTrustGame
 from lib.runner import go
 
 modules = [
@@ -7,7 +8,8 @@ modules = [
     practiceTrial,
     controlTrial,
     experimentTrial,
-    practiceTrustGame
+    practiceTrustGame,
+    experimentTrustGame
 ]
 
 results = go(modules)

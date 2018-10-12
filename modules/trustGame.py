@@ -1,12 +1,31 @@
 from psychopy import event, visual
 from lib.utils import proceedOrQuit
 
+instructions1 = """
+Press the UP ARROW key or DOWN
+ARROW key to increase and decrease
+the amount given to each player.
+"""
+
+beginWithA = "Lest begin with Player A"
+
+moveToInstrutions = """
+Press the SPACE bar to move on to
+Player {}.
+"""
+
+spaceBarInstructions = """
+Press the SPACE bar to move on to the
+next part of the game.
+"""
+
 # Colors in RGB
 black = (0, 0, 0)
 grey = (217, 217, 217)
 red = (255, 0, 0)
 green = (169, 209, 142)
 
+startingDollars = "$ 5.00"
 step = 0.25
 multiplier = 3
 
@@ -15,32 +34,47 @@ Are you happy with your choices?
 (y/n)
 """
 
+playerLetters = ['A', 'B', 'C', 'D']
+
+def drawInstructions(move, instructions):
+    if move >= 5:
+        return None
+    elif move == 1:
+        instructions[-1].draw()
+
+    instructions[0].draw()
+    if move < 4:
+        instructions[1].setText(moveToInstrutions.format(playerLetters[move]))
+    else:
+        instructions[1].setText(spaceBarInstructions)
+    instructions[1].draw()
+
 def gameTextBoxes(win):
     return [
       [
           visual.Rect(win, fillColorSpace='rgb255',width=0.3,height=0.2, fillColor=red, pos=[0,-0.7], lineColor=None),
           visual.Rect(win, fillColorSpace='rgb255',width=0.27,height=0.15, fillColor=grey, pos=[0, -0.7], lineColor=None),
-          visual.TextStim(win, '$ 5.00', colorSpace='rgb255', color=black, pos=[0, -0.7], height=0.1)
+          visual.TextStim(win, startingDollars, colorSpace='rgb255', color=black, pos=[0, -0.7], height=0.1)
       ],
       [
         visual.Rect(win, fillColorSpace='rgb255', width=0.3, height=0.2,fillColor=green,pos=[-0.58,0.33],lineColor=None),
         visual.Rect(win, fillColorSpace='rgb255',width=0.27,height=0.15,fillColor=grey, pos=[-0.58,0.33],lineColor=None),
-        visual.TextStim(win, '$ 5.00', colorSpace='rgb255', color=black, pos=[-0.58,0.33], height=0.1)
+        visual.TextStim(win, startingDollars, colorSpace='rgb255', color=black, pos=[-0.58,0.33], height=0.1)
       ],
       [
         visual.Rect(win, fillColorSpace='rgb255',width=0.3,height=0.2,fillColor=black,pos=[0.58,0.33], lineColor=None),
         visual.Rect(win, fillColorSpace='rgb255',width=0.27,height=0.15,fillColor=grey,pos=[0.58,0.33], lineColor=None),
-        visual.TextStim(win, '$ 5.00', colorSpace='rgb255', color=black, pos=[0.58,0.33], height=0.1)
+        visual.TextStim(win, startingDollars, colorSpace='rgb255', color=black, pos=[0.58,0.33], height=0.1)
       ],
       [
         visual.Rect(win,fillColorSpace='rgb255',width=0.3,height=0.2,fillColor=black,pos=[-0.58,-0.33], lineColor=None),
         visual.Rect(win,fillColorSpace='rgb255',width=0.27,height=0.15,fillColor=grey,pos=[-0.58,-0.33], lineColor=None),
-        visual.TextStim(win, '$ 5.00', colorSpace='rgb255', color=black, pos=[-0.58,-0.33], height=0.1)
+        visual.TextStim(win, startingDollars, colorSpace='rgb255', color=black, pos=[-0.58,-0.33], height=0.1)
       ],
       [
         visual.Rect(win,fillColorSpace='rgb255',width=0.3,height=0.2,fillColor=black,pos=[0.58,-0.33], lineColor=None),
         visual.Rect(win,fillColorSpace='rgb255',width=0.27,height=0.15,fillColor=grey, pos=[0.58,-0.33], lineColor=None),
-        visual.TextStim(win, '$ 5.00', colorSpace='rgb255', color=black, pos=[0.58,-0.33], height=0.1)
+        visual.TextStim(win, startingDollars, colorSpace='rgb255', color=black, pos=[0.58,-0.33], height=0.1)
       ]
     ]
 
@@ -53,10 +87,12 @@ def setTextBoxAmount(textBox, amount):
 def getTextBoxAmount(textBox):
     return float(textBox[2].text[2:])
 
-def incrementAmount(textBox, mover=False):
+def incrementAmount(textBox, targetAmount, mover=False):
     amount = getTextBoxAmount(textBox)
     if mover:
         if amount + step > 5.0:
+            return False
+        elif targetAmount == 5.0:
             return False
         amount += step
     else:
@@ -87,7 +123,7 @@ def setMoverTarget(textBoxes, prevTarget, newTarget):
 def clearPlayers(textBoxes):
     for box in textBoxes:
         box[0].setFillColor(black, colorSpace='rgb255')
-        box[2].setText("$ 5.00")
+        box[2].setText(startingDollars)
 
 def drawBoard(win, imageList, markerList, textBoxes):
     for index in range(4):
@@ -104,10 +140,18 @@ def run(context):
     imageList = context['imageList']
     markerList = context['markerList']
     win = context['window']
+    isDemo = context['trustGameDemo']
     textBoxes = gameTextBoxes(win)
+    instructions = [
+        visual.TextStim(win, instructions1, pos=[0,0.4],height=0.06,wrapWidth=1.5),
+        visual.TextStim(win, moveToInstrutions, pos=[0,-0.3], height=0.06,wrapWidth=1.5),
+        visual.TextStim(win, beginWithA, pos=[0,0],height=0.06,wrapWidth=1.5),
+    ]
     currentMover = textBoxes[0]
     prompt = visual.TextStim(win, confirmPrompt, height=0.06)
 
+    if isDemo:
+        drawInstructions(1, instructions)
     drawBoard(win, imageList, markerList, textBoxes)
 
     stillDeciding = True
@@ -117,13 +161,14 @@ def run(context):
         setMoverTarget(textBoxes, currentTarget, currentTarget)
         while currentTarget < 5:
             keys = ['space', 'escape', 'up', 'down']
+            moverTargetAmount = getTextBoxAmount(moverTarget)
             input = proceedOrQuit(win, keys = keys)
             if 'up' in input:
                 updateTarget = decrementAmount(currentMover, mover=True)
                 if updateTarget:
-                    incrementAmount(moverTarget)
+                    incrementAmount(moverTarget, moverTargetAmount)
             elif 'down' in input:
-                updateTarget = incrementAmount(currentMover, mover=True)
+                updateTarget = incrementAmount(currentMover, moverTargetAmount, mover=True)
                 if updateTarget:
                     decrementAmount(moverTarget)
             elif 'space' in input:
@@ -131,6 +176,8 @@ def run(context):
                 if currentTarget < 5:
                     setMoverTarget(textBoxes, currentTarget - 1, currentTarget)
                     moverTarget = textBoxes[currentTarget]
+            if isDemo:
+                drawInstructions(currentTarget, instructions)
             drawBoard(win, imageList, markerList, textBoxes)
 
         prompt.draw()
@@ -140,9 +187,11 @@ def run(context):
             stillDeciding = False
         else:
             currentTarget = 1
-            setMoverTarget(textBoxes, 4, 1)
             moverTarget = textBoxes[currentTarget]
             clearPlayers(textBoxes)
+            setMoverTarget(textBoxes, 4, 1)
+            if isDemo:
+                drawInstructions(currentTarget, instructions)
             drawBoard(win, imageList, markerList, textBoxes)
 
     return context
