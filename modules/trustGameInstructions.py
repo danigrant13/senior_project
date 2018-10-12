@@ -251,9 +251,9 @@ def run(context):
             visual.TextStim(win, proceedInstructions, pos=[0,-0.3], height=0.06,wrapWidth=1.5)
         ]),
         (True, (0, 1), ["$ 8.00", "$ 1.75", "$ 5.00", "$ 5.75", "$ 11.00"], [
-            visual.TextStim(win, page9Section1, pos=[0,0.4],height=0.06,wrapWidth=1.5),
+            visual.TextStim(win, page9Section1, pos=[0,0.5],height=0.06,wrapWidth=1.5),
             visual.TextStim(win, page9Section2, pos=[0,0],height=0.06,wrapWidth=1.5),
-            visual.TextStim(win, proceedInstructions, pos=[0,-0.3], height=0.06,wrapWidth=1.5)
+            visual.TextStim(win, proceedInstructions, pos=[0,-0.4], height=0.06,wrapWidth=1.5)
         ]),
         (True, (0, 1), ["$ 6.00", "$ 3.75", "$ 5.00", "$ 5.75", "$ 11.00"], [
             visual.TextStim(win, page10Section1, pos=[0,0.4],height=0.06,wrapWidth=1.5),
