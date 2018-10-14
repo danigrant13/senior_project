@@ -1,10 +1,11 @@
-from modules import demoTrial, initialize, practiceTrial, controlTrial,\
-                    experimentTrial, practiceTrustGame, experimentTrustGame
+from modules import attentionGameInstructions, initialize, practiceTrial, controlTrial,\
+                    experimentTrial, practiceTrustGame, experimentTrustGame, trustGameInstructions
 from lib.runner import go
 
 modules = [
     initialize,
-    demoTrial,
+    attentionGameInstructions,
+    trustGameInstructions,
     practiceTrial,
     controlTrial,
     experimentTrial,

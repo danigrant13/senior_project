@@ -1,8 +1,8 @@
-from modules import trustGame, trustGameInstructions
+from modules import practiceTrustGameIntro, trustGame
 from lib.runner import go
 
 
-subModules = [trustGameInstructions, trustGame]
+subModules = [practiceTrustGameIntro, trustGame]
 
 silhouette = 'silhouette.jpg'
 

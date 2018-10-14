@@ -1,10 +1,10 @@
 import random
 from modules import attentionChangeQuiz, attentionTask, attentionTaskFeedback, \
-                    experimentalAttentionInstructions, gatherRatings
+                    experimentalAttentionIntro, gatherRatings
 from lib.runner import go
 
 subModules = [
-    experimentalAttentionInstructions,
+    experimentalAttentionIntro,
     attentionTask,
     gatherRatings,
     attentionChangeQuiz,

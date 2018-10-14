@@ -122,14 +122,6 @@ alphabetical order to decide how much or
 little money you choose to trust them with.
 """
 
-page13Section1 = """
-You will press the UP ARROW key or
-DOWN ARROW key to increase and
-decrease the amount.
-"""
-
-page13Section2 = "Now let's practice!"
-
 def gameTextBoxes(win):
     return [
       [
@@ -266,11 +258,6 @@ def run(context):
         ]),
         (True, (None, None), ["$ 5.00", "$ 5.00", "$ 5.00", "$ 5.00", "$ 5.00"], [
             visual.TextStim(win, page12Section1, pos=[0,0.4],height=0.06,wrapWidth=1.5),
-            visual.TextStim(win, proceedInstructions, pos=[0,-0.3], height=0.06,wrapWidth=1.5)
-        ]),
-        (True, (4, None), ["$ 5.00", "$ 5.00", "$ 5.00", "$ 5.00", "$ 5.00"], [
-            visual.TextStim(win, page13Section1, pos=[0,0.4],height=0.06,wrapWidth=1.5),
-            visual.TextStim(win, page13Section2, pos=[0,0],height=0.06,wrapWidth=1.5),
             visual.TextStim(win, proceedInstructions, pos=[0,-0.3], height=0.06,wrapWidth=1.5)
         ])
     ]

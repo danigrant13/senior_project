@@ -5,7 +5,7 @@ ratingScaleText = """Please answer a few questions about your reaction to these 
 the trial.
 For each question, enter a number between 0 and 7, with 0 = "Not at all" and 7 = "Very Much."
 Not at all ---------------------------------------------------------------------- Very Much
-   1             2             3             4             5             6             7\
+         1             2             3             4             5             6             7\
 """
 
 question1Text = 'How much do you like this person?'
@@ -52,7 +52,8 @@ def run(context, collectData=False):
     imageList = context['imageList']
     answers = __initAnswersArray()
 
-    ratingInstructions1 = visual.TextStim(win, ratingScaleText, pos=[0,0.65],height=0.05,wrapWidth=0.9)
+    ratingInstructions1 = visual.TextStim(win, ratingScaleText,
+            pos=[0,0.70],height=0.04,wrapWidth=0.95)
     ratingInstructions2 = visual.TextStim(win,'Press the SPACE key after each response to continue.',
                                           pos=[0,-0.7],height=0.05,wrapWidth=0.9)
 
