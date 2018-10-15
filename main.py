@@ -4,14 +4,14 @@ from modules import trustGameInstructions2, attentionGameInstructions, initializ
 from lib.runner import go
 
 modules = [
-    initialize,
-    attentionGameInstructions,
-    trustGameInstructions2,
-    practiceTrial,
-    controlTrial,
-    experimentTrial,
-    trustGameTransition,
-    practiceTrustGame,
+    #initialize,
+    #attentionGameInstructions,
+    #trustGameInstructions2,
+    #practiceTrial,
+    #controlTrial,
+    #experimentTrial,
+    #trustGameTransition,
+    #practiceTrustGame,
     experimentTrustGame,
     thankYou
 ]
