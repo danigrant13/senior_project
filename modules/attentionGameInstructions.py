@@ -1,7 +1,7 @@
 from modules import demoTrial, experimentalAttentionInstructions
 from lib.runner import go
 
-subModules = [demoTrial, experimentalAttentionInstructions]
+subModules = [demoTrial]
 
 def run(context):
     return go(subModules, context)

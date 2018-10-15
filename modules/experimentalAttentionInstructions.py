@@ -5,13 +5,12 @@ screen1Text = """\
 You will now begin the main part of the experiment.
 
 Your task in this part of the experiment is going to be just the same as it was \
-during the practice trials. The experiment consists of a series of 1 trials just like the \
-practice trials that you completed, except somewhat longer. They will take a total of \
-approximately 30 minutes to complete.
+during the 2nd trial
 
-The only difference here is that on these trials you will be awarded a certain amount of POINTS \
-based on your performance each trial. Your goal is to gain as many points as possible over the \
-course of the experiment.
+The only difference is that you will be awarded a certain amount of POINTS \
+based on your performance during the trial. Your goal is to gain as many points \
+as possible over the course of the experiment.
+
 
 On the next screen we will explain the point scoring system in more detail.
 

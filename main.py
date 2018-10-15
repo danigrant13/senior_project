@@ -1,16 +1,19 @@
-from modules import attentionGameInstructions, initialize, practiceTrial, controlTrial,\
-                    experimentTrial, practiceTrustGame, experimentTrustGame, trustGameInstructions
+from modules import trustGameInstructions2, attentionGameInstructions, initialize, practiceTrial, controlTrial,\
+                    experimentTrial, practiceTrustGame, experimentTrustGame, thankYou,\
+                    trustGameInstructions, trustGameTransition
 from lib.runner import go
 
 modules = [
     initialize,
-    attentionGameInstructions,
-    trustGameInstructions,
-    practiceTrial,
-    controlTrial,
-    experimentTrial,
+    #attentionGameInstructions,
+    #trustGameInstructions2,
+    #practiceTrial,
+    #controlTrial,
+    #experimentTrial,
+    trustGameTransition,
     practiceTrustGame,
-    experimentTrustGame
+    experimentTrustGame,
+    thankYou
 ]
 
 results = go(modules)

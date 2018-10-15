@@ -4,14 +4,11 @@ from lib.utils import proceedOrQuit
 instructions1 = """
 Press the UP ARROW key or DOWN
 ARROW key to increase and decrease
-the amount given to each player.
+the amount given to the player.
 """
 
-beginWithA = "Lets begin with Player A"
-
 moveToInstrutions = """
-Press the SPACE bar to move on to
-Player {}.
+Press the SPACE bar to continue
 """
 
 spaceBarInstructions = """
@@ -54,7 +51,7 @@ def drawInstructions(move, instructions):
 
     instructions[0].draw()
     if move < 4:
-        instructions[1].setText(moveToInstrutions.format(playerLetters[move]))
+        instructions[1].setText(moveToInstrutions)
     else:
         instructions[1].setText(spaceBarInstructions)
     instructions[1].draw()
@@ -161,8 +158,7 @@ def run(context):
     textBoxes = gameTextBoxes(win)
     instructions = [
         visual.TextStim(win, instructions1, pos=[0,0.4],height=0.06,wrapWidth=1.5),
-        visual.TextStim(win, moveToInstrutions, pos=[0,-0.3], height=0.06,wrapWidth=1.5),
-        visual.TextStim(win, beginWithA, pos=[0,0],height=0.06,wrapWidth=1.5),
+        visual.TextStim(win, moveToInstrutions, pos=[0,-0.3], height=0.06,wrapWidth=1.5)
     ]
     currentMover = textBoxes[-1]
     prompt = visual.TextStim(win, confirmPrompt, height=0.06)

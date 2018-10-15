@@ -7,32 +7,81 @@ grey = (217, 217, 217)
 red = (255, 0, 0)
 green = (169, 209, 142)
 
-startingDollars = "$ 5.00"
-
-page1Section1 = """\
-Next you are going to play a game with the previus participants \
-that may proceed in a future study session later this semester.
-"""
-page1Section2 = """
-In this game, there are two roles:
-First Mover & Second Mover
-"""
-page1Section3 =  """
-You and the other participants will be randomly assigned to \
-one of these two roles. The role you are assigned will determine \
-the kinds of actions you can perform in the game.
+age1introGame = """ \
+Now, we will describe Game #2 \
 """
 
-page2Section1 = """
-At the beginning of the game
-we are going to put {} in
-each player's account.
-""".format(startingDollars)
+pressSpace = "Press the SPACE key to continue reading the instructions."
 
-proceedInstructions = """
-Press the SPACE bar to move on the
-next part of the instructions
+summaryText = """
+In Game #2, you will again be presented with a screen surrounded by four photos of previous participants. \
+They will be labeled A, B, C, and D. In addition, you will be given a letter designation, 'E', ]
+to indicate you are a player in this game.{}
+     The basic layout of the trial will look like this:{}
+""".format('\n\n', '\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n')
+
+summaryText2 = """
+In Game #2, each player (including you) will be allotted $5.00 each in their personal bank.{}
+     The basic layout of the trial will look like this:{}
+""".format('\n\n', '\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n')
+
+title = """ \
+There are two roles in this game:
+First Mover & Second Mover"""
+
+gameRoles = """
+The First Mover is randomly selected among all the participants
+
+The first mover chooses which of the other four participants they would like to play the trust game with
+
+the first mover is given the opportunity to give as little as $0.00 or as much as $5.00, or any amount in between (in $0.25 increments), so their participant of choice
+
+The money given to the chosen participant will be multiplied by three and placed in the chosen participant's bank
 """
+
+def screen1(win):
+    summary = visual.TextStim(win, summaryText, pos=[0, 0],height=0.07,wrapWidth=1.7)
+    layout = visual.ImageStim(win, image='layout.bmp', mask=None, units='norm', pos=[0, -0.1], size=[0.88, 1.0])
+
+    summary.draw()
+    layout.draw()
+    pressSpaceStim.draw()
+    win.flip()
+    proceedOrQuit(win)
+
+def screen2(win):
+    pressSpaceStim = visual.TextStim(win, pressSpace, height=0.06, pos=[0, -0.7], wrapWidth=1.7)
+    summary = visual.TextStim(win, summaryText2, pos=[0, 0],height=0.07,wrapWidth=1.7)
+    layout = visual.ImageStim(win, image='layout.bmp', mask=None, units='norm', pos=[0, -0.1], size=[0.88, 1.0])
+
+    summary.draw()
+    layout.draw()
+    pressSpaceStim.draw()
+    win.flip()
+    proceedOrQuit(win)
+
+def screen3(win, textStim):
+    pressSpaceStim = visual.TextStim(win, pressSpace, height=0.06, pos=[0, -0.7], wrapWidth=1.7)
+    visual.TextStim(win, title, pos=[0,0.85],height=0.1,wrapWidth=1.5),
+    textStim.setText(gameRoles)
+    textStim.draw()
+    pressSpaceStim.draw()
+    win.flip()    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\
 
 page3Section1 = """
 The First Mover (red box) will be given the
@@ -204,65 +253,10 @@ def run(context):
 
     textBoxes = gameTextBoxes(win)
 
-    pages = [
-        (False, (None, None), [], [
-            visual.TextStim(win, page1Section1, pos=[0,0.3],height=0.06,wrapWidth=1.5),
-            visual.TextStim(win, page1Section2, height=0.06,wrapWidth=1.5),
-            visual.TextStim(win, page1Section3, pos=[0,-0.3],height=0.06,wrapWidth=1.5)
-        ]),
-        (True, (None, None), [], [
-            visual.TextStim(win, page2Section1, pos=[0,0.3],height=0.06,wrapWidth=1.5),
-            visual.TextStim(win, proceedInstructions, pos=[0,-0.3], height=0.06,wrapWidth=1.5)
-        ]),
-        (True, (1, None), ["$ 5.00", "$ 5.00", "$ 5.00", "$ 5.00", "$ 5.00"], [
-            visual.TextStim(win, page3Section1, pos=[0,0.3],height=0.06,wrapWidth=1.5),
-            visual.TextStim(win, proceedInstructions, pos=[0,-0.3], height=0.06,wrapWidth=1.5)
-        ]),
-        (True, (1, 0), ["$ 8.00", "$ 4.00", "$ 5.00", "$ 5.00", "$ 5.00"], [
-            visual.TextStim(win, page4Section1, pos=[0,0.4],height=0.06,wrapWidth=1.5),
-            visual.TextStim(win, page4Section2, pos=[0,0],height=0.06,wrapWidth=1.5),
-            visual.TextStim(win, proceedInstructions, pos=[0,-0.3], height=0.06,wrapWidth=1.5)
-        ]),
-        (True, (1, 2), ["$ 8.00", "$ 4.00", "$ 5.00", "$ 5.00", "$ 5.00"], [
-            visual.TextStim(win, page5Section1, pos=[0,0.4],height=0.06,wrapWidth=1.5),
-            visual.TextStim(win, page5Section2, pos=[0,0],height=0.06,wrapWidth=1.5),
-            visual.TextStim(win, proceedInstructions, pos=[0,-0.3], height=0.06,wrapWidth=1.5)
-        ]),
-        (True, (1, 3), ["$ 8.00", "$ 3.75", "$ 5.00", "$ 5.75", "$ 5.00"], [
-            visual.TextStim(win, page6Section1, pos=[0,0.4],height=0.06,wrapWidth=1.5),
-            visual.TextStim(win, page6Section2, pos=[0,0],height=0.06,wrapWidth=1.5),
-            visual.TextStim(win, proceedInstructions, pos=[0,-0.3], height=0.06,wrapWidth=1.5)
-        ]),
-        (True, (1, 4), ["$ 8.00", "$ 1.75", "$ 5.00", "$ 5.75", "$ 11.00"], [
-            visual.TextStim(win, page7Section1, pos=[0,0.4],height=0.06,wrapWidth=1.5),
-            visual.TextStim(win, page7Section2, pos=[0,0],height=0.06,wrapWidth=1.5),
-            visual.TextStim(win, proceedInstructions, pos=[0,-0.3], height=0.06,wrapWidth=1.5)
-        ]),
-        (True, (0, 1), ["$ 8.00", "$ 1.75", "$ 5.00", "$ 5.75", "$ 11.00"], [
-            visual.TextStim(win, page8Section1, pos=[0,0.3],height=0.06,wrapWidth=1.5),
-            visual.TextStim(win, proceedInstructions, pos=[0,-0.3], height=0.06,wrapWidth=1.5)
-        ]),
-        (True, (0, 1), ["$ 8.00", "$ 1.75", "$ 5.00", "$ 5.75", "$ 11.00"], [
-            visual.TextStim(win, page9Section1, pos=[0,0.5],height=0.06,wrapWidth=1.5),
-            visual.TextStim(win, page9Section2, pos=[0,0],height=0.06,wrapWidth=1.5),
-            visual.TextStim(win, proceedInstructions, pos=[0,-0.4], height=0.06,wrapWidth=1.5)
-        ]),
-        (True, (0, 1), ["$ 6.00", "$ 3.75", "$ 5.00", "$ 5.75", "$ 11.00"], [
-            visual.TextStim(win, page10Section1, pos=[0,0.4],height=0.06,wrapWidth=1.5),
-            visual.TextStim(win, page10Section2, pos=[0,0],height=0.06,wrapWidth=1.5),
-            visual.TextStim(win, proceedInstructions, pos=[0,-0.3], height=0.06,wrapWidth=1.5)
-        ]),
-        (True, (0, 1), ["$ 6.00", "$ 3.75", "$ 5.00", "$ 5.75", "$ 11.00"], [
-            visual.TextStim(win, page11Section1, pos=[0,0.4],height=0.06,wrapWidth=1.5),
-            visual.TextStim(win, proceedInstructions, pos=[0,-0.3], height=0.06,wrapWidth=1.5)
-        ]),
-        (True, (None, None), ["$ 5.00", "$ 5.00", "$ 5.00", "$ 5.00", "$ 5.00"], [
-            visual.TextStim(win, page12Section1, pos=[0,0.4],height=0.06,wrapWidth=1.5),
-            visual.TextStim(win, proceedInstructions, pos=[0,-0.3], height=0.06,wrapWidth=1.5)
-        ])
-    ]
+
 
     for page in pages:
         __drawPage(win, page, imageList, markerList, textBoxes)
         proceedOrQuit(win)
     return context
+
