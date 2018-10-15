@@ -5,11 +5,11 @@ from lib.runner import go
 
 modules = [
     initialize,
-    #attentionGameInstructions,
-    #trustGameInstructions2,
-    #practiceTrial,
-    #controlTrial,
-    #experimentTrial,
+    attentionGameInstructions,
+    trustGameInstructions2,
+    practiceTrial,
+    controlTrial,
+    experimentTrial,
     trustGameTransition,
     practiceTrustGame,
     experimentTrustGame,
