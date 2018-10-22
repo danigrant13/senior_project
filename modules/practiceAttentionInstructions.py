@@ -2,7 +2,7 @@ from psychopy import visual
 from lib.utils import proceedOrQuit
 
 screen5Text = """
-        You will now complete two PRACTICE trials for Game #1.
+        You will now complete two PRACTICE trials for Trial #1.
 
 
 
@@ -15,6 +15,7 @@ Remember your two tasks:
     1. Press the SHIFT key when a VOWEL is at the center of the screen
     2. Keep count of how many times any image changes during each trial
 """
+
 practiceText1 = """\
 You are about to begin the first practice trial.
 

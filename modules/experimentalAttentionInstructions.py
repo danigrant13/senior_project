@@ -1,22 +1,20 @@
 from psychopy import visual
 from lib.utils import proceedOrQuit
 
-screen1Text = """\
-You will now begin the main part of the experiment.
 
-Your task in this part of the experiment is going to be just the same as it was \
+screen1Text = """\
+You will now begin the experimental trial.
+
+Your task in this part of the experiment is the same as it was \
 during the 2nd trial
 
-The only difference is that you will be awarded a certain amount of POINTS \
-based on your performance during the trial. Your goal is to gain as many points \
-as possible over the course of the experiment.
-
-
-On the next screen we will explain the point scoring system in more detail.
+Your goal is to be as accurate as possible.
 
 
 
-Press the SPACE key to advance to the next screen and continue reading the instructions.\
+
+
+Press the SPACE key to continue.
 """
 
 screen2Text = """

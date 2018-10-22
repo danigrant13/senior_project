@@ -7,14 +7,16 @@ grey = (217, 217, 217)
 red = (255, 0, 0)
 green = (169, 209, 142)
 
-introTask = """ \
-Now, we will describe Task #2. \
-"""
+
 pressSpace_task2 = "Press the SPACE key to continue reading the instructions for Task #2."
 
 pressSpace = "Press the SPACE key to continue."
 
 pressSpace_fin = "Press the SPACE key to finish reading the instructions."
+
+introTask = """ \
+Now, we will describe Task #2. \
+"""
 
 summaryText = """
 In Task #2, you will again be presented with a screen surrounded by four photos of previous participants. \
@@ -32,18 +34,18 @@ There are two roles in this task:
 First Mover & Second Mover"""
 
 gameRoles = """
-You will be the First Mover.
+1. You will be the First Mover.
 
-You wil choose how much money, if any, to send to the other participants (Second Mover).\
-You can give as little as $0.00 or as much as $5.00 (in $0.25 increments), to the other participants in total.
+2. You will choose how much money, if any, to send to the other participants (Second Mover).
+   You can give as little as $0.00 or as much as $5.00 (in $0.25 increments), to the other participants in total.
 
-Any money you send will be multiplied by three and placed in the chosen participant's account. In a follow-up \
+3. Any money you send will be multiplied by three and placed in the chosen participant's account. In a follow-up \
 session, they will be given the chance to send some, none, or all of that money back to you.
 """
 
 summaryText3 = """
 During the game, a RED BOX will indicate current Mover, \
-while a GREEN BOX will indicate receiver.{}
+while a GREEN BOX will indicate the current receiver.{}
 """.format('\n\n', '\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n')
 
 def run(context):

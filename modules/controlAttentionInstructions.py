@@ -4,17 +4,17 @@ from lib.utils import proceedOrQuit
 controlText1 = "You will now begin the 2nd Practice Trial"
 
 controlText2 = """
-Your task for the 2nd practice trial is going to be the same as it was during the \
-1st practice trial, except it will be somewhat longer. It will take a toal of two minutes to complete.
+Your task for the 2nd practice trial is the same as it was during the \
+1st practice trial, except it will be somewhat longer. It will take a total of two minutes to complete.
 """
 
 controlText3 = """
-In addition, you will answer a few more questions about each image on the screen
+In addition, you will answer a few more questions about each image on the screen.
 
 Please take a moment to locate the SHIFT key.
 """
 
-spaceText = "Press the SPACE key to advance to the the trial"
+spaceText = "Press the SPACE key to advance to the the 2nd Practice Trial"
 
 def run(context):
     win = context['window']
