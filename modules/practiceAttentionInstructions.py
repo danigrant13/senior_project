@@ -7,7 +7,7 @@ screen5Text = """
 
 
 These will get you familiar with the experimental procedure.
-After the practice trials, you will begin the main experiment tiral.
+After the practice trials, you will begin the main experiment trial.
 
 
 Remember your two tasks:
@@ -22,7 +22,7 @@ You are about to begin the first practice trial.
 Take a moment to locate the SHIFT key.
 """
 
-practiceText2 = "When ready, press the SPACE key to begin the trial"
+practiceText2 = "When ready, press the SPACE key to begin the trial."
 
 # instruction screen 5
 def screen5(win, textStim):

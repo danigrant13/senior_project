@@ -41,7 +41,7 @@ instructions2Text = """
 """
 
 instructions3Text = """The photo above will demonstrate what you are looking for each \
-time an photo rotates. 
+time a photo rotates. 
 
         Press the SPACE key to watch the image rotate and change to a new image.\
 """
