@@ -8,7 +8,7 @@ the amount given to the player.
 """
 
 moveToInstrutions = """
-Press the SPACE bar to continue
+Press the SPACE bar to continue.
 """
 
 spaceBarInstructions = """
@@ -32,12 +32,14 @@ Please select the player you would like to send money to
 """
 
 confirmPrompt = """\
-Are you happy with your choices?
+Are your choices final?
+
 (y/n)
 """
 
 continuePrompt = """\
-Would you like to continue giving money?
+Would you like to send money to anyone else?
+
 (y/n)
 """
 
