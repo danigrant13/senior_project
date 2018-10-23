@@ -6,6 +6,7 @@ initialOptions = {
   '   Gender': 'f', #must be male or female
   '   Subject number':1,
   ' Block length (secs)':20,          # for experiment = 120 sec
+  ' Practice length (secs)':20,          # for experiment = 120 sec
   'Date':time.strftime("%m-%d-%Y@%H.%M", time.localtime()),
   'Vowel probability':0.3,
   'Letter change interval (secs)':2.75,
@@ -17,19 +18,19 @@ initialOptions = {
 
 demographicImages = {
     'f': [
-        ['WF_1.jpg', 'WF_2.jpg', 'WF_3.jpg', 'WF_4.jpg'],
-        ['BF_1.jpg', 'BF_2.jpg', 'BF_3.jpg', 'BF_4.jpg'],
-        ['AF_1.jpg', 'AF_2.jpg', 'AF_3.jpg', 'AF_4.jpg'],
-        ['LF_1.jpg', 'LF_2.jpg', 'LF_3.jpg', 'LF_4.jpg'],
-        ['LF_1.jpg', 'LF_2.jpg', 'LF_3.jpg', 'LF_4.jpg']
+        ['WF_1.jpg', 'WF_2.jpg', 'WF_3.jpg', 'WF_4.jpg', 'F1'],
+        ['BF_1.jpg', 'BF_2.jpg', 'BF_3.jpg', 'BF_4.jpg', 'F2'],
+        ['AF_1.jpg', 'AF_2.jpg', 'AF_3.jpg', 'AF_4.jpg', 'F3'],
+        ['LF_1.jpg', 'LF_2.jpg', 'LF_3.jpg', 'LF_4.jpg', 'F4'],
+        ['LF_1.jpg', 'LF_2.jpg', 'LF_3.jpg', 'LF_4.jpg', 'F5']
     ],
     'pf': ['PF_1.jpg', 'PF_2.jpg', 'PF_3.jpg', 'PF_4.jpg', 'PF_1b.jpg'],
     'm': [
-        ['WM_1.jpg', 'WM_2.jpg', 'WM_3.jpg', 'WM_4.jpg'],
-        ['BM_1.jpg', 'BM_2.jpg', 'BM_3.jpg', 'BM_4.jpg'],
-        ['AM_1.jpg', 'AM_2.jpg', 'AM_3.jpg', 'AM_4.jpg'],
-        ['LM_1.jpg', 'LM_2.jpg', 'LM_3.jpg', 'LM_4.jpg'],
-        ['LM_1.jpg', 'LM_2.jpg', 'LM_3.jpg', 'LM_4.jpg']
+        ['WM_1.jpg', 'WM_2.jpg', 'WM_3.jpg', 'WM_4.jpg', 'M1'],
+        ['BM_1.jpg', 'BM_2.jpg', 'BM_3.jpg', 'BM_4.jpg', 'M2'],
+        ['AM_1.jpg', 'AM_2.jpg', 'AM_3.jpg', 'AM_4.jpg', 'M3'],
+        ['LM_1.jpg', 'LM_2.jpg', 'LM_3.jpg', 'LM_4.jpg', 'M4'],
+        ['LM_1.jpg', 'LM_2.jpg', 'LM_3.jpg', 'LM_4.jpg', 'M5']
     ],
     'pm': ['PM_1.jpg','PM_2.jpg', 'PM_3.jpg', 'PM_4.jpg', 'PM_1b.jpg'],
 }
@@ -74,12 +75,15 @@ def run(context):
     context['options'] = updated_options
     context['imageList'] = imageList
     context['markerList'] = markerList
+
     context['practiceImages'] = demographicImages['p' + gender]
-    context['controlImages'] = trialImages[0]
-    context['trialImages'] = trialImages[1]
+    context['controlImages'] = trialImages[0][:4]
+    context['trialImages'] = trialImages[1][:4]
+    context['controlGroup'] = trialImages[0][-1]
+    context['trialGroup'] = trialImages[1][-1]
+
     random.shuffle(context['controlImages'])
     random.shuffle(context['trialImages'])
-    context['reports'] = []
 
     # attention task change settings
     context['target'] = 0
@@ -92,7 +96,40 @@ def run(context):
     # you should do this in the appropriate module implementing the task
     # e.g. modules/practiceTrial.py
     context['numberOfChanges'] = 0
+
+    context['report'] = {
+        'headers': __initHeaders(),
+        'data': __initData(context),
+    }
+    context['collectData'] = True
+
     return context
+
+def __initHeaders():
+    return [
+        "Pt #",
+        "Age",
+        "Gender",
+        "Length of control attention trial (seconds)",
+        "Length of experimental attention trial (seconds)",
+        "Control group",
+        "Order of control group pictures",
+        "Experimental Group",
+        "Order of experimental group pictures"
+    ]
+
+def __initData(context):
+    return [
+        context['options']['subject'],
+        context['options']['age'],
+        context['options']['gender'],
+        context['options']['blockLength'],
+        context['options']['blockLength'],
+        context['controlGroup'],
+        " ".join(context['controlImages']),
+        context['trialGroup'],
+        " ".join(context['trialImages'])
+    ]
 
 def __validate(options):
     gender = options['   Gender']
@@ -102,6 +139,7 @@ def __validate(options):
     rotateMin = options['Min rotation interval (secs)']
     rotateMax = options['Max rotation interval (secs)']
     blockLength = options[' Block length (secs)']
+    practiceLength = options[' Practice length (secs)']
     letterPause = options['Letter blink duration (secs)']
 
     if gender not in ['f', 'm']:
@@ -116,13 +154,27 @@ def __validate(options):
         print 'Error: subject number must be a positive integer!'
         print 'Subject number was set to: ' + str(options['   Subject number'])
         core.quit()
+
+    try:
+        age = int(options['   Age'])
+    except:
+        print 'Error: age must be a positive integer!'
+        print 'age was set to: ' + str(options['   Age'])
+        core.quit()
     #check subject number for range
     if not subject>=0:
         print 'Error: subject number must be a positive integer!'
-        print 'Subject number was set to: ' + str(options['    Subject number'])
+        print 'Subject number was set to: ' + str(options['   Subject number'])
+        core.quit()
+
+    if not age>=18:
+        print 'Error: must be 18 years or older'
+        print 'age was set to: ' + str(options['   Age'])
         core.quit()
 
     return {
+        'age': age,
+        'subject': subject,
         'gender': gender.lower(),
         'vowelProb': vowelProb,
         'letterInterval': letterInterval,
@@ -130,5 +182,6 @@ def __validate(options):
         'rotateMin': rotateMin,
         'rotateMax': rotateMax,
         'blockLength': blockLength,
+        'practiceLength': practiceLength,
         'letterPause': letterPause
     }

@@ -152,6 +152,27 @@ def drawBoard(win, imageList, markerList, textBoxes, justTarget=None):
     textBoxes[-1][2].draw()
     win.flip()
 
+def __dataHeaders():
+    return [
+        "1st choice giving money (actual picture name)",
+        "How much given to 1st choice (no multiplier)",
+        "2nd choice giving money (actual picture name)",
+        "How much given to 2nd choice (no multiplier)",
+        "3rd choice giving money (actual picture name)",
+        "How much given to 3rt choice (no multiplier)",
+        "4th choice giving money (actual picture name)",
+        "How much given to 4th choice (no multiplier)"
+    ]
+
+def __setData(context, giftOrder, textBoxes, pictures):
+    values = []
+    for index in giftOrder:
+        values.append(pictures[index])
+        values.append((getTextBoxAmount(textBoxes[index]) - 5.0) / 3)
+
+    context['report']['headers'] += __dataHeaders()
+    context['report']['data'] += values
+
 def run(context):
     imageList = context['imageList']
     markerList = context['markerList']
@@ -166,6 +187,7 @@ def run(context):
     prompt = visual.TextStim(win, confirmPrompt, height=0.06)
     players = { 'a': 0, 'b': 1, 'c': 2, 'd': 3 }
 
+    giftOrder = []
 
     currentTarget = 0
     lastTarget = 0
@@ -205,6 +227,9 @@ def run(context):
                     drawInstructions(currentTarget, instructions)
                 drawBoard(win, imageList, markerList, textBoxes, justTarget=currentTarget)
 
+                if context['collectData']:
+                    if currentTarget not in giftOrder:
+                        giftOrder.append(currentTarget)
             prompt.setText(continuePrompt)
             prompt.draw()
             drawBoard(win, imageList, markerList, textBoxes, justTarget=currentTarget)
@@ -219,5 +244,8 @@ def run(context):
         input = proceedOrQuit(win, keys=['escape', 'y', 'n'])
         if 'y' in input:
             stillDeciding = False
+
+    if context['collectData']:
+        __setData(context, giftOrder, textBoxes, [imageStim.image for imageStim in imageList])
 
     return context

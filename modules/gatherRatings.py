@@ -47,6 +47,15 @@ def __initAnswersArray(numQuestions=7):
     answerList = ['' for x in range(numQuestions)]
     return [answerList, list(answerList), list(answerList), list(answerList)]
 
+def __setData(context, answers):
+    trial = 'control' if context['trialNum'] == 0 else 'exp'
+    headerFormat = '{}_{}_Q{}'
+    letterList = ['A', 'B', 'C', 'D']
+    for index, answerList in enumerate(answers):
+        headers = [headerFormat.format(letterList[index], trial, question + 1) for question in range(7)]
+        context['report']['headers'] += headers
+        context['report']['data'] += answerList
+
 def run(context, collectData=False):
     win = context['window']
     imageList = context['imageList']
@@ -101,11 +110,7 @@ def run(context, collectData=False):
             elif proceed > 0 and answers[screen][question] != '':
                 question += 1
 
-    if collectData:
-        headers = [
-            question1Text, question2Text, question3Text, question4Text,
-            question5Text, question6Text, question7Text
-        ]
-        context['reports'].append((headers, answers))
+    if context['collectData']:
+        __setData(context, answers)
 
     return context
