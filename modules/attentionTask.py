@@ -223,4 +223,8 @@ def run(context):
     context['changeSide1'] = ""
     context['changeSide2'] = ""
     context['changeProb'] = 0.25
+
+    for image in imageList:
+        image.setOri(0)
+    
     return context

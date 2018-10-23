@@ -1,9 +1,7 @@
 from psychopy import visual
 from lib.utils import proceedOrQuit
 
-welcomeText = """\
-Welcome to the experiment!
-"""
+welcomeText = "Welcome to the experiment!"
 
 intro = """
 There are two tasks in this experiment: Task #1 & Task #2.
@@ -139,8 +137,8 @@ def __rotateDemoImage(win, demoPicStim, rotateSpeed, demoPicChange, instructions
         drawInstructions(win, instructions, demoPicStim)
 
 def run(context):
-    pressSpaceStim = visual.TextStim(win, pressSpace, height=0.06, pos=[0, -0.8], wrapWidth=1.7)
     win = context['window']
+   
     demoPicA = 'demo_a.jpg'
     demoPicB = 'demo_b.jpg'
     demoPic = visual.ImageStim(win, image=demoPicA, mask=None, units='norm', pos=[0,-0.1], size=[0.45,0.6])
@@ -149,8 +147,10 @@ def run(context):
         visual.TextStim(win, instructions2Text, pos=[0,0.50],height=0.06,wrapWidth=1.5),
         visual.TextStim(win, instructions3Text, pos=[0,-0.65],height=0.06,wrapWidth=1.5),
     ]
+    
     rotateSpeed = context['options']['speed']
     screenStim = visual.TextStim(win, screen4Text, pos=[0, 0], height=0.08, wrapWidth=1.5)
+    pressSpaceStim = visual.TextStim(win, pressSpace, height=0.06, pos=[0, -0.8], wrapWidth=1.7)
 
     __welcomeAndSummary(win)
 
