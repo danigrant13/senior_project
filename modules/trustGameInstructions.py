@@ -8,7 +8,7 @@ red = (255, 0, 0)
 green = (169, 209, 142)
 
 age1introGame = """ \
-Now, we will describe Game #2 \
+Now, we will describe Task #2 \
 """
 
 pressSpace = "Press the SPACE key to continue reading the instructions."

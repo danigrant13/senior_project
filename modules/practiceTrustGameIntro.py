@@ -10,7 +10,7 @@ green = (169, 209, 142)
 startingDollars = "$ 5.00"
 
 page1Section1 = """
-Now, we will do a Trust Game practice round.
+Now, we will do a Task #2 practice round.
 """
 
 page2Section1 = """
