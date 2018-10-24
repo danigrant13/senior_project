@@ -6,6 +6,32 @@ def __drawImages(imageList, markerList):
         imageList[index].draw()
         markerList[index].draw()
 
+def __dataHeaders():
+    return [
+        "Did any of the images change during the trial? (y/n)",
+        "Which image changed? (A B C D)",
+        "How many times did this image change?",
+        "Most frequent",
+        "2nd most frequent",
+        "3rd most frequent",
+        "Least frequent"
+    ]
+
+def __setData(context):
+    report = context['report']
+    results = context['changeQuizResults']
+
+    report['headers'] += __dataHeaders()
+    report['data'] += [
+        results['yesNo'],
+        results['whichImage'],
+        results['howManyTimes'],
+        results['first'],
+        results['second'],
+        results['third'],
+        results['fourth']
+    ]
+
 def run(context):
     win = context['window']
     imageList = context['imageList']
@@ -148,4 +174,8 @@ def run(context):
         'third': third,
         'fourth': fourth
     }
+
+    if context['collectData']:
+        __setData(context)
+
     return context
