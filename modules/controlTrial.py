@@ -19,5 +19,6 @@ def run(context):
     context['target'] = -1
     context['trialNum'] = 0
     context['numberOfChanges'] = 0
+    context['attentionDuration'] = context['options']['blockLength']
 
     return go(subModules, context)

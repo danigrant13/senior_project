@@ -22,6 +22,7 @@ def run(context):
     context['nonTargetList'] = [1, 2, 3]
     context['numberOfChanges'] = 2
     context['changeProb'] = __changeProb(context)
+    context['attentionDuration'] = context['options']['practiceLength']
 
     context['trialNum'] = 0
 

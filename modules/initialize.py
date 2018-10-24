@@ -101,7 +101,7 @@ def run(context):
         'headers': __initHeaders(),
         'data': __initData(context),
     }
-    context['collectData'] = True
+    context['collectData'] = False
 
     return context
 

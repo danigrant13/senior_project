@@ -58,7 +58,7 @@ def run(context):
     shouldChange = numberOfChanges > 0
     actualChanges = 0
 
-    duration=context['options']['blockLength']
+    duration=context['attentionDuration']
     letterInterval = context['options']['letterInterval']
     letterPause = context['options']['letterPause']
     mistakes = successes = 0.0

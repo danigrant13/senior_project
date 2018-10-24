@@ -22,6 +22,7 @@ def run(context):
     context['nonTargetList'] = filter(lambda x: x != context['target'], possible_targets)
     context['numberOfChanges'] = 0
     context['changeProb'] = 0.5
+    context['attentionDuration'] = context['options']['blockLength']
 
     context['trialNum'] = 1
 
