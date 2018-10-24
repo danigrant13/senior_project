@@ -7,6 +7,8 @@ introText = """
 
 
 
+
+
         You are now about to begin the experimental trial.
 
 
