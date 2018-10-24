@@ -135,6 +135,7 @@ def clearPlayers(textBoxes):
         box[2].setText(startingDollars)
 
 def drawBoard(win, imageList, markerList, textBoxes, justTarget=None):
+    you = visual.TextStim(win, "You", pos=[0, -0.5], height=0.1)
     if justTarget == None:
         for index in range(4):
             imageList[index].draw()
@@ -150,6 +151,7 @@ def drawBoard(win, imageList, markerList, textBoxes, justTarget=None):
     textBoxes[-1][0].draw()
     textBoxes[-1][1].draw()
     textBoxes[-1][2].draw()
+    you.draw()
     win.flip()
 
 def __dataHeaders():
