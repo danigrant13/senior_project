@@ -183,7 +183,7 @@ def run(context):
     textBoxes = gameTextBoxes(win)
     instructions = [
         visual.TextStim(win, instructions1, pos=[0,0.4],height=0.06,wrapWidth=1.5),
-        visual.TextStim(win, moveToInstrutions, pos=[0,-0.3], height=0.06,wrapWidth=1.5)
+        visual.TextStim(win, moveToInstrutions, pos=[0,0.1], height=0.06,wrapWidth=1.5)
     ]
     currentMover = textBoxes[-1]
     prompt = visual.TextStim(win, confirmPrompt, height=0.06)
@@ -205,8 +205,7 @@ def run(context):
             currentTarget = players[input[0].lower()]
             moverTarget = textBoxes[currentTarget]
             setMoverTarget(textBoxes, lastTarget, currentTarget)
-            if isDemo:
-                drawInstructions(currentTarget, instructions)
+            drawInstructions(currentTarget, instructions)
             drawBoard(win, imageList, markerList, textBoxes, justTarget=currentTarget)
 
             collectingAmount = True
@@ -225,8 +224,7 @@ def run(context):
                 elif 'space' in input:
                     collectingAmount = False
 
-                if isDemo:
-                    drawInstructions(currentTarget, instructions)
+                drawInstructions(currentTarget, instructions)
                 drawBoard(win, imageList, markerList, textBoxes, justTarget=currentTarget)
 
                 if context['collectData']:
