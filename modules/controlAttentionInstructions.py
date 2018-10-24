@@ -13,7 +13,7 @@ In addition, you will answer a few more questions about each image on the screen
 
 
 
-                Please take a moment to locate the SHIFT key.
+                    Please take a moment to locate the SHIFT key.
 """
 
 spaceText = "Press the SPACE key to advance to the the 2nd Practice Trial."

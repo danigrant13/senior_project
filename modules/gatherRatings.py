@@ -6,9 +6,9 @@ ratingScaleText = """\
                                        faces during the trial.
                            Enter a number between 0 and 7, with 
        0 = "Not at all" or "Very bad" and 7 = "Very much" or "Very good."
-       
+
     Not at all ---------------------------------------------------------------- Very much
-        1             2             3             4             5             6             7
+          1             2             3             4             5             6             7
      Very bad ---------------------------------------------------------------- Very good
 
 """
