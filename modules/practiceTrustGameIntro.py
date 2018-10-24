@@ -58,11 +58,13 @@ def gameTextBoxes(win):
     ]
 
 def __drawBoard(win, imageList, markerList, textBoxes):
+    you = visual.TextStim(win, "You", pos=[0, -0.5], height=0.1)
     for index in range(4):
         imageList[index].draw()
         markerList[index].draw()
         for tb in textBoxes[index]:
             tb.draw()
+    you.draw()
     textBoxes[-1][0].draw()
     textBoxes[-1][1].draw()
     textBoxes[-1][2].draw()
