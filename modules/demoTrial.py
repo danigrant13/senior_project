@@ -45,17 +45,17 @@ time a photo rotates.
 """
 
 instructions3Alt = """\
-To rotate and change the image again, press the BACKSPACE key.
+Can you find what is changing in the image?
 
-Can you find what is changing in the picture above each time the image rotates?
-
-                                Press the SPACE key to find out...\
+                    Press the SPACE key to watch the image rotate and change to a new image.\
 """
 
 instructions3Answer = """\
 ANSWER: Pay attention to the man\'s eyebrows.
   
- The image flips 180 degrees while rotating.
+The image flips 180 degrees while rotating.
+
+Press the SPACE key to continue.
 """
 
 screen4Text = """\

@@ -16,7 +16,7 @@ modules = [
     experimentTrustGame,
     genReport,
     thankYou
-]
+] 
 
 results = go(modules)
 print(results)
