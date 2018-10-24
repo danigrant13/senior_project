@@ -1,12 +1,31 @@
 from psychopy import visual
 from lib.utils import proceedOrQuit
 
-introText = """\
-Now you are about to begin the main experiment.
+introText = """
 
-Please take this moment to locate the SHIFT key on the keyboard.
+        You are now about to begin the experimental trial.
 
-When ready, press the SPACE key to begin the trial\
+
+
+            Take this moment to locate the SHIFT key.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                When ready, press the SPACE key to begin.
 """
 
 def run(context):

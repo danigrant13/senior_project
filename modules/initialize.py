@@ -2,11 +2,11 @@ from psychopy import core, visual, event, gui
 import random, time
 
 initialOptions = {
-  '   Age': 0,
+  '   Age': 21,
   '   Gender': 'f', #must be male or female
   '   Subject number':1,
-  ' Block length (secs)':20,          # for experiment = 120 sec
-  ' Practice length (secs)':20,          # for experiment = 120 sec
+  ' Block length (secs)':30,          # for experiment = 120 sec
+  ' Practice length (secs)':120,          # for experiment = 120 sec
   'Date':time.strftime("%m-%d-%Y@%H.%M", time.localtime()),
   'Vowel probability':0.3,
   'Letter change interval (secs)':2.75,

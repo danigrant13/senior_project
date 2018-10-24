@@ -6,7 +6,7 @@ pressSpace = "Press the SPACE key to continue."
 transitionText = """
 You have finished Task #1!
 
-Next you will play Game #2.
+Next you will do Task #2.
 """
 
 page1 = """

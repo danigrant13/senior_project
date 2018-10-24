@@ -37,10 +37,12 @@ gameRoles = """
 1. You will be the First Mover.
 
 2. You will choose how much money, if any, to send to the other participants (Second Mover).
-   You can give as little as $0.00 or as much as $5.00 (in $0.25 increments), to the other participants in total.
+   You can give as little as $0.00 or as much as $5.00 (in $0.25 increments), to the other 
+   participants in total.
 
-3. Any money you send will be multiplied by three and placed in the chosen participant's account. In a follow-up \
-session, they will be given the chance to send some, none, or all of that money back to you.
+3. Any money you send will be multiplied by three and placed in the chosen participant's 
+   account. In a follow-up session, they will be given the chance to send some, none, or 
+   all of that money back to you.
 """
 
 summaryText3 = """

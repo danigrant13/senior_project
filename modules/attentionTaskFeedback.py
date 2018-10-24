@@ -48,35 +48,7 @@ def run(context):
         feedbackImageA = visual.ImageStim(win,image='AM_3.jpg',mask=None,units='norm',pos=[-0.3,-0.72],size=[0.45,0.6])
         feedbackImageB = visual.ImageStim(win,image='AM_3.jpg',mask=None,units='norm',pos=[0.3,-0.72],size=[0.45,0.6])
         feedbackDebug = visual.TextStim(win, '(No target image on the practice trial)', pos=[0,-0.7],height=0.05)
-    if trialNum > 0:
-        # tally points
-        pointTotal = 0
-        if successes==0:
-            vowelPoints = 0
-        else:
-            vowelPoints = round((successes / (successes + 2*mistakes))*50, 2)
-        if actualChanges>0:
-            if yesNo=='y':
-                if whichImage.lower()==changeOptions[target].lower() and int(howManyTimes)==actualChanges:
-                    imagePoints = 50
-                else:
-                    imagePoints = 10
-            else:
-                imagePoints = 0
-        else:
-            if yesNo=='y':
-                imagePoints = 10
-            else:
-                imagePoints = 50
-        score1 = visual.TextStim(win,'Points earned from vowel task: ' + str(vowelPoints) + ' / 50' +
-            '\nPoints earned from image change task: ' + str(imagePoints) + ' / 50',
-            pos=[0, 0], height=0.06, wrapWidth=1.5)
-        pointTotal += vowelPoints + imagePoints
-        score2 = visual.TextStim(win,'Total points earned on this trial: ' + str(vowelPoints + imagePoints) + ' / 100' +
-            '\nRunning average of points per trial: ' + str(round(pointTotal/trialNum, 2)) + ' / 100',
-            pos=[0, -0.2], height=0.1, wrapWidth=1.5)
-        score1.draw()
-        score2.draw()
+    
     win.flip()
     proceedOrQuit(win)
 

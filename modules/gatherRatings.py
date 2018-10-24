@@ -1,11 +1,15 @@
 from psychopy import visual
 from lib.utils import proceedOrQuit
 
-ratingScaleText = """Please answer a few questions about your reaction to these four faces during \
-the trial.
-For each question, enter a number between 0 and 7, with 0 = "Not at all" and 7 = "Very Much."
-Not at all ---------------------------------------------------------------------- Very Much
-         1             2             3             4             5             6             7\
+ratingScaleText = """\
+      Please answer a few questions about your reaction to these four
+                                       faces during the trial.
+                           Enter a number between 0 and 7, with 
+       0 = "Not at all" or "Very bad" and 7 = "Very much" or "Very good."
+    Not at all ---------------------------------------------------------------- Very much
+        1             2             3             4             5             6             7
+     Very bad ---------------------------------------------------------------- Very good
+
 """
 
 question1Text = 'How much do you like this person?'

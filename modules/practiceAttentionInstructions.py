@@ -2,7 +2,7 @@ from psychopy import visual
 from lib.utils import proceedOrQuit
 
 screen5Text = """
-        You will now complete two PRACTICE trials for Trial #1.
+        You will now complete two PRACTICE trials for Task #1.
 
 
 
@@ -22,7 +22,7 @@ You are about to begin the first practice trial.
 Take a moment to locate the SHIFT key.
 """
 
-practiceText2 = "When ready, press the SPACE key to begin the trial."
+practiceText2 = "Press the SPACE key to begin the 1st practice trial."
 
 # instruction screen 5
 def screen5(win, textStim):

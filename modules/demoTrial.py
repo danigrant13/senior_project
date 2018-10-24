@@ -47,15 +47,15 @@ time a photo rotates.
 instructions3Alt = """\
                             Can you find what is changing in the image?
 
-                    Press the SPACE key to watch the image rotate and change to a new image.\
+     Press the SPACE key to watch the image rotate and change to a new image.\
 """
 
 instructions3Answer = """\
 ANSWER: Pay attention to the man\'s eyebrows.
   
- The image flips 180 degrees while rotating.
+  The image flips 180 degrees while rotating.
 
-      Press the SPACE key to continue.
+         Press the SPACE key to continue.
 """
 
 screen4Text = """\

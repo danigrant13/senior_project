@@ -10,9 +10,7 @@ green = (169, 209, 142)
 startingDollars = "$ 5.00"
 
 page1Section1 = """
-We will now begin the trust game.
-
-First we will do a practice round
+Now, we will do a Trust Game practice round.
 """
 
 page2Section1 = """
@@ -24,8 +22,8 @@ decrease the amount.
 page2Section2 = "Now let's practice!"
 
 proceedInstructions = """
-Press the SPACE bar to move on the
-next part of the instructions
+Press the SPACE key to move on 
+to the next part of the instructions.
 """
 
 def gameTextBoxes(win):
