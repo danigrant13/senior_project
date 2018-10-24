@@ -15,7 +15,7 @@ and will have the chance to make decisions with real money that can impact \
 yourself and them.
 """
 
-beginWithGame1 = "First, we will describe Task #1"
+beginWithGame1 = "First, we will describe Task #1."
 pressSpace_task1 = "Press the SPACE key to begin instructions for Task #1."
 
 pressSpace = "Press the SPACE key to continue."
@@ -68,7 +68,7 @@ You must pay close attention to the images to successfully detect them!
 1. Not every trial of task #1 will have an image change, some will 
     have no image changes, and some will have multiple image changes.
 
-2. when an image DOES change, it will only ever do so while it is rotating. 
+2. When an image DOES change, it will only ever do so while it is rotating. 
     So, the best way to detect if an image changed is to check right after 
     each rotation.
 
