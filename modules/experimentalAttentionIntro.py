@@ -9,11 +9,11 @@ introText = """
 
 
 
-        You are now about to begin the experimental trial.
+          You are now about to begin the experimental trial.
 
 
 
-            Take this moment to locate the SHIFT key.
+               Take this moment to locate the SHIFT key.
 
 
 

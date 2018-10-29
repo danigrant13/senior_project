@@ -19,8 +19,8 @@ Now, we will describe Task #2. \
 """
 
 summaryText = """
-In Task #2, you will again be presented with a screen surrounded by four photos of previous participants. \
-They will be labeled A, B, C, and D.{}
+In Task #2, you will again be presented with a screen surrounded by four photos of previous 
+                               participants. They will be labeled A, B, C, and D.{}
      The basic layout of the trial will look like this:{}
 """.format('\n\n', '\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n')
 
@@ -29,25 +29,25 @@ In Task #2, each participant (including you) will be allotted $5.00 each in thei
      The basic layout of the trial will look like this:{}
 """.format('\n\n', '\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n')
 
-title = """ \
+title = """ 
 There are two roles in this task:
-   First Mover & Second Mover"""
+   First Mover & Second Movers"""
 
 gameRoles = """
-1. You will be the First Mover.
+    1. You will be the First Mover.
 
-2. You will choose how much money, if any, to send to the other participants (Second Mover).
-    You can give as little as $0.00 or as much as $5.00 (in $0.25 increments), to the other 
-    participants in total.
+    2. You will choose how much money, if any, to send to the other participants 
+       (Second Mover). You can give as little as $0.00 or as much as $5.00 
+       (in $0.25 increments), to the other participants in total.
 
-3. Any money you send will be multiplied by three and placed in the chosen participant's 
-    account. In a follow-up session, they will be given the chance to send some, none, or 
-    all of that money back to you.
+    3. Any money you send will be multiplied by three and placed in the chosen 
+       participant's account. In a follow-up session, they will be given the chance 
+       to send some, none, or all of that money back to you.
 """
 
 summaryText3 = """
-During the game, a RED BOX will indicate current Mover, \
-while a GREEN BOX will indicate the current receiver.{}
+          You, the First Mover, will be surrounded by a RED BOX.
+A GREEN BOX will indicate the participant you choose to give money.{}
 """.format('\n\n', '\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n')
 
 def run(context):
@@ -64,12 +64,13 @@ def run(context):
         [
             pressSpaceStim,
             visual.TextStim(win, summaryText, pos=[0, 0],height=0.07,wrapWidth=1.7),
-            visual.ImageStim(win, image='trustDemo1.jpg', mask=None, units='norm', pos=[0, -0.2], size=[0.88, 1.0])
-        ],
+            visual.ImageStim(win, image='trustDemo1.jpg', mask=None, units='norm', pos=[0, -0.1], size=[0.88, 1.0])
+        ],     
+
         [
             pressSpaceStim,
             visual.TextStim(win, summaryText2, pos=[0, 0],height=0.07,wrapWidth=1.7),
-            visual.ImageStim(win, image='trustDemo2.jpg', mask=None, units='norm', pos=[0, -0.2], size=[0.88, 1.0])
+            visual.ImageStim(win, image='trustDemo2.jpg', mask=None, units='norm', pos=[0, -0.1], size=[0.88, 1.0])
         ],
         [
             pressSpaceStim_fin,
@@ -79,7 +80,7 @@ def run(context):
         [
             pressSpaceStim,
             visual.TextStim(win, summaryText3, pos=[0, 0.7],height=0.07,wrapWidth=1.7),
-            visual.ImageStim(win, image='trustDemo3.jpg', mask=None, units='norm', pos=[0, -0.2], size=[0.88, 1.0])
+            visual.ImageStim(win, image='trustDemo3.jpg', mask=None, units='norm', pos=[0, -0.1], size=[0.88, 1.0])
         ]
 
     ]

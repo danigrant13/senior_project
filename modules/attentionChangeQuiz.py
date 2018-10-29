@@ -9,12 +9,12 @@ def __drawImages(imageList, markerList):
 def __dataHeaders():
     return [
         "Did any of the images change during the trial? (y/n)",
-        "Which image changed? (A B C D)",
+        "Which image changed? (A, B, C, D)",
         "How many times did this image change?",
-        "Most frequent",
-        "2nd most frequent",
-        "3rd most frequent",
-        "Least frequent"
+        "Most frequent:",
+        "2nd most frequent:",
+        "3rd most frequent:",
+        "Least frequent:"
     ]
 
 def __setData(context):
@@ -36,10 +36,11 @@ def run(context):
     win = context['window']
     imageList = context['imageList']
     markerList = context['markerList']
-
-    quiz1 = visual.TextStim(win,'Did one of the images change during this trial?\n\nPress the "Y" key for yes.' +
-    '\nPress the "N" key for no.',
-    pos=[0,0],height=0.06)
+    question = """
+    Did one of the images change during this trial? 
+                         
+                                     (y/n)"""
+    quiz1 = visual.TextStim(win, question, pos=[0,0],height=0.06)
 
     quiz1.draw()
     __drawImages(imageList, markerList)
@@ -62,7 +63,7 @@ def run(context):
                 gettingInput = False
                 quizQuestions = True
     if quizQuestions:
-        quiz1.setText('Which image changed during the trial?' +
+        quiz1.setText('          Which image changed during the trial?' +
             '\n\n' +
             'Press the letter key that corresponds to the image.')
         quiz1.draw()
@@ -76,7 +77,7 @@ def run(context):
                     whichImage = thisKey
                     gettingInput = False
         quiz1.setText('How many times did image ' + thisKey + ' change during the trial?' +
-        '\n\nPlease enter a number between 1 and 9')
+        '\n\n          Please enter a number between 1 and 9')
         quiz1.draw()
         __drawImages(imageList, markerList)
         win.flip()
@@ -91,10 +92,13 @@ def run(context):
     # forced choice of highest frequency image
     validKeys = ['a','b','c','d']
     # prompt for input of most frequent image to least frequent image
-    forcePrompt = visual.TextStim(win,'During the trial, it may have appeared that some images were rotating more' +
-    ' frequently than were other images. Please rank the 4 images from the trial in order of the image that rotated' +
-    ' MOST frequently to the image that rotated LEAST frequently. For each choice, press the letter key that corresponds' +
-    ' to the image.',
+    text = """
+     During the trial, it may have appeared that some images were rotating more frequently than 
+        were other images. Please rank the 4 images from the trial in order of the image that 
+                 rotated MOST frequently to the image that rotated LEAST frequently. 
+                 For each choice, press the letter key that corresponds to the image."""
+    
+    forcePrompt = visual.TextStim(win, text,
         pos=[0, .2], height=0.06, wrapWidth=1.4)
     forceAns1 = visual.TextStim(win,'Most frequent: ', # most frequent image input
         pos=[0, -0.2], height=0.06, wrapWidth=1.4)

@@ -15,8 +15,8 @@ Now, we will do a Trust Game practice round.
 
 page2Section1 = """
 You will press the UP ARROW key or
-DOWN ARROW key to increase and
-decrease the amount.
+ DOWN ARROW key to increase and
+            decrease the amount.
 """
 
 page2Section2 = "Now let's practice!"
@@ -111,7 +111,7 @@ def run(context):
     textBoxes = gameTextBoxes(win)
     pages = [
         (False, (None, None), [], [
-            visual.TextStim(win, page1Section1, pos=[0,0.3],height=0.06,wrapWidth=1.5),
+            visual.TextStim(win, page1Section1, pos=[0,0.3],height=0.07,wrapWidth=1.5),
             visual.TextStim(win, proceedInstructions, pos=[0,-0.3], height=0.06,wrapWidth=1.5)
         ]),
         (True, (4, None), ["$ 5.00", "$ 5.00", "$ 5.00", "$ 5.00", "$ 5.00"], [

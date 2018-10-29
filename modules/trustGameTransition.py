@@ -6,20 +6,23 @@ pressSpace = "Press the SPACE key to continue."
 transitionText = """
 You have finished Task #1!
 
-Next you will do Task #2.
+  Next you will do Task #2.
 """
 
-page1 = """
-For Task #2, there are two roles: First Mover & Second Mover.
+page1 = """                    For Task #2, there are two roles: First Mover & Second Mover.
 
-You will be the First Mover.
 
-The four previous participants will be Second Movers.
 
-Any money you choose to send to the other participants will be multiplied by three. \
-They will be given the opportunity to send you money back if they wish.
+        1. You will be the First Mover.
 
-You can distribute your $5.00 however you would like, including keeping some or all of it.
+        2. The four previous participants will be Second Movers.
+
+        3. Any money you choose to send to the other participants will be multiplied 
+            by three. They will be given the opportunity to send you money back if they 
+            wish.
+
+        4. You can distribute your $5.00 however you would like, including keeping some 
+            or all of it.
 
 """
 

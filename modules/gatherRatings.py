@@ -3,7 +3,7 @@ from lib.utils import proceedOrQuit
 
 ratingScaleText = """\
       Please answer a few questions about your reaction to these four
-                                       faces during the trial.
+                                         faces during the trial.
                            Enter a number between 0 and 7, with 
        0 = "Not at all" or "Very bad" and 7 = "Very much" or "Very good."
 

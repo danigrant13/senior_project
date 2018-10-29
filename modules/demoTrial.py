@@ -4,15 +4,13 @@ from lib.utils import proceedOrQuit
 welcomeText = "Welcome to the experiment!"
 
 intro = """
-There are two tasks in this experiment: Task #1 & Task #2.
+                      There are two tasks in this experiment: Task #1 & Task #2.
 
-You will see a series of faces in these tasks. These faces \
-are previous participants who currently attend CU Boulder and \
-had a picture taken during their session like you just did.
+ You will see a series of faces in these tasks. These faces are previous participants who \
+currently attend CU Boulder and had a picture taken during their session like you just did.
 
-In Task #2, you will be paired up with four of these previous participants \
-and will have the chance to make decisions with real money that can impact \
-yourself and them.
+In Task #2, you will be paired up with four of these previous participants and will have the 
+           chance to make decisions with real money that can impact yourself and them.
 """
 
 beginWithGame1 = "First, we will describe Task #1."
@@ -21,45 +19,50 @@ pressSpace_task1 = "Press the SPACE key to begin instructions for Task #1."
 pressSpace = "Press the SPACE key to continue."
 
 summaryText = """
-In Task #1, you will be presented with a steady stream of letters at the center of the screen \
-surrounded by 4 photos (of previous participants) which will periodically rotate 180 degrees and \
-sometimes change to a mirror image.{}
+   In Task #1, you will be presented with a steady stream of letters at the center of the screen 
+surrounded by 4 photos (of previous participants) which will periodically rotate 180 degrees and 
+                                           sometimes change to a mirror image. {}
      The basic layout of the trial will look like this:{}
 """.format('\n\n', '\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n')
 
 instructions1Text = 'You have two tasks during this part of the experiment:'
 
 instructions2Text = """
+
 1. Press the SHIFT key when the letter at the center of the screen is a VOWEL.
        (e.g., press SHIFT when the letter 'a' appears, but not the letter 'f')
 
-2. Each time an image rotates, there is a small chance that it will change to its mirror image. 
-    At the end of the experimental trial, you will be asked how many image changes there were 
-    during trial.
+2. Each time an image rotates, there is a small chance that it will change to its mirror 
+    image. At the end of the experimental trial, you will be asked how many image 
+    changes there were during trial.
 """
 
-instructions3Text = """The photo above will demonstrate what you are looking for each \
-time a photo rotates. 
+instructions3Text = """The photo above will show what you are looking for each time a photo rotates. 
 
-        Press the SPACE key to watch the image rotate and change to a new image.\
+  
+  
+  Press the SPACE key to watch the image rotate and change to a new image.\
 """
 
 instructions3Alt = """\
                             Can you find what is changing in the image?
 
-     Press the SPACE key to watch the image rotate and change to a new image.\
+  
+  
+  Press the SPACE key to watch the image rotate and change to a new image.\
 """
 
 instructions3Answer = """\
 ANSWER: Pay attention to the man\'s eyebrows.
   
-  The image flips 180 degrees while rotating.
+   The image flips 180 degrees while rotating.
 
-         Press the SPACE key to continue.
+
+          Press the SPACE key to continue.
 """
 
 screen4Text = """\
-Some image changes you will be looking for may be difficult to detect.
+ Some image changes you will be looking for may be difficult to detect.
 
 You must pay close attention to the images to successfully detect them!
 
@@ -79,13 +82,13 @@ You must pay close attention to the images to successfully detect them!
 
 def __welcomeAndSummary(win):
     pressSpaceStim = visual.TextStim(win, pressSpace, height=0.06, pos=[0, -0.8], wrapWidth=1.7)
-    welcome = visual.TextStim(win, welcomeText, height = 0.1)
+    welcome = visual.TextStim(win, welcomeText, height = 0.10)
     welcome.draw()
     pressSpaceStim.draw()
     win.flip()
     proceedOrQuit(win)
 
-    introStim = visual.TextStim(win, intro, wrapWidth=1.7, height=0.10)
+    introStim = visual.TextStim(win, intro, wrapWidth=1.7, height=0.07)
     introStim.draw()
     pressSpaceStim.draw()
     win.flip()
@@ -143,13 +146,13 @@ def run(context):
     demoPicB = 'demo_b.jpg'
     demoPic = visual.ImageStim(win, image=demoPicA, mask=None, units='norm', pos=[0,-0.1], size=[0.45,0.6])
     instructions = [
-        visual.TextStim(win, instructions1Text, pos=[0,0.85],height=0.06,wrapWidth=1.5),
-        visual.TextStim(win, instructions2Text, pos=[0,0.50],height=0.06,wrapWidth=1.5),
+        visual.TextStim(win, instructions1Text, pos=[0,0.85],height=0.07,wrapWidth=1.5),
+        visual.TextStim(win, instructions2Text, pos=[0,0.50],height=0.07,wrapWidth=1.5),
         visual.TextStim(win, instructions3Text, pos=[0,-0.65],height=0.06,wrapWidth=1.5),
     ]
     
     rotateSpeed = context['options']['speed']
-    screenStim = visual.TextStim(win, screen4Text, pos=[0, 0], height=0.08, wrapWidth=1.5)
+    screenStim = visual.TextStim(win, screen4Text, pos=[0, 0], height=0.07, wrapWidth=1.5)
     pressSpaceStim = visual.TextStim(win, pressSpace, height=0.06, pos=[0, -0.8], wrapWidth=1.7)
 
     __welcomeAndSummary(win)

@@ -2,9 +2,9 @@ from psychopy import event, visual
 from lib.utils import proceedOrQuit
 
 instructions1 = """
-Press the UP ARROW key or DOWN
+ Press the UP ARROW key or DOWN
 ARROW key to increase and decrease
-the amount given to the player.
+      the amount given to the player.
 """
 
 moveToInstrutions = """
@@ -13,7 +13,7 @@ Press the SPACE bar to continue.
 
 spaceBarInstructions = """
 Press the SPACE bar to move on to the
-next part of the game.
+           next part of the game.
 """
 
 # Colors in RGB
@@ -28,19 +28,20 @@ multiplier = 3
 
 selectTargetPrompt = """\
 Please select the player you would like to send money to
-(A, B, C, or D)
+
+                                 (A, B, C, or D)
 """
 
 confirmPrompt = """\
 Are your choices final?
 
-(y/n)
+              (y/n)
 """
 
 continuePrompt = """\
 Would you like to send money to anyone else?
 
-(y/n)
+                                  (y/n)
 """
 
 playerLetters = ['A', 'B', 'C', 'D']

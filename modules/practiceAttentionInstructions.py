@@ -6,20 +6,20 @@ screen5Text = """
 
 
 
-These will get you familiar with the experimental procedure.
-After the practice trials, you will begin the main experiment trial.
+      These will get you familiar with the experimental procedure.
+   After the practice trials, you will begin the main experiment trial.
 
 
-Remember your two tasks:
+                                  Remember your two tasks:
 
-    1. Press the SHIFT key when a VOWEL is at the center of the screen
-    2. Keep count of how many times any image changes during each trial
+  1. Press the SHIFT key when a VOWEL is at the center of the screen
+  2. Keep count of how many times any image changes during each trial
 """
 
 practiceText1 = """\
 You are about to begin the first practice trial.
 
-Take a moment to locate the SHIFT key.
+  Take a moment to locate the SHIFT key.
 """
 
 practiceText2 = "Press the SPACE key to begin the 1st practice trial."
@@ -35,7 +35,7 @@ def screen5(win, textStim):
 def run(context):
     win = context['window']
 
-    screen5 = visual.TextStim(win, screen5Text, pos=[0, 0.3], height=0.06, wrapWidth=1.5)
+    screen5 = visual.TextStim(win, screen5Text, pos=[0, 0.3], height=0.07, wrapWidth=1.5)
     pressSpaceStim = visual.TextStim(win, practiceText2, height=0.06, pos=[0, -0.7], wrapWidth=1.7)
 
     screen5.draw()
@@ -43,8 +43,8 @@ def run(context):
     win.flip()
     proceedOrQuit(win)
 
-    textStim1 = visual.TextStim(win, practiceText1, pos=[0, 0], height=0.06, wrapWidth=1.5)
-    textStim2 = visual.TextStim(win, practiceText2, pos=[0, -0.9], height=0.06, wrapWidth=1.5)
+    textStim1 = visual.TextStim(win, practiceText1, pos=[0, 0], height=0.07, wrapWidth=1.5)
+    textStim2 = visual.TextStim(win, practiceText2, pos=[0, -0.7], height=0.06, wrapWidth=1.7)
 
     textStim1.draw()
     textStim2.draw()
