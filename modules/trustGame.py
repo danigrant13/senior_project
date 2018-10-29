@@ -29,7 +29,7 @@ multiplier = 3
 selectTargetPrompt = """\
 Please select the player you would like to send money to
 
-                                 (A, B, C, or D)
+                            (A, B, C, D, or N = none)
 """
 
 confirmPrompt = """\
@@ -201,15 +201,18 @@ def run(context):
             prompt.setText(selectTargetPrompt)
             prompt.draw()
             drawBoard(win, imageList, markerList, textBoxes)
-            input = proceedOrQuit(win, keys=['escape', 'A', 'B', 'C', 'D', 'a', 'b', 'c', 'd'])
+            input = proceedOrQuit(win, keys=['escape', 'A', 'B', 'C', 'D', 'a', 'b', 'c', 'd', 'N', 'n'])
             lastTarget = currentTarget
-            currentTarget = players[input[0].lower()]
-            moverTarget = textBoxes[currentTarget]
-            setMoverTarget(textBoxes, lastTarget, currentTarget)
-            drawInstructions(currentTarget, instructions)
-            drawBoard(win, imageList, markerList, textBoxes, justTarget=currentTarget)
+            inputLetter = input[0].lower()
+            collectingAmount = True if inputLetter != 'n' else False
 
-            collectingAmount = True
+            if inputLetter != 'n':
+                currentTarget = players[inputLetter]
+                moverTarget = textBoxes[currentTarget]
+                setMoverTarget(textBoxes, lastTarget, currentTarget)
+                drawInstructions(currentTarget, instructions)
+                drawBoard(win, imageList, markerList, textBoxes)
+
             while collectingAmount:
                 keys = ['space', 'escape', 'up', 'down']
                 moverTargetAmount = getTextBoxAmount(moverTarget)
@@ -226,14 +229,14 @@ def run(context):
                     collectingAmount = False
 
                 drawInstructions(currentTarget, instructions)
-                drawBoard(win, imageList, markerList, textBoxes, justTarget=currentTarget)
+                drawBoard(win, imageList, markerList, textBoxes)
 
                 if context['collectData']:
                     if currentTarget not in giftOrder:
                         giftOrder.append(currentTarget)
             prompt.setText(continuePrompt)
             prompt.draw()
-            drawBoard(win, imageList, markerList, textBoxes, justTarget=currentTarget)
+            drawBoard(win, imageList, markerList, textBoxes)
             input = proceedOrQuit(win, keys=['escape', 'y', 'n'])
             if 'n' in input:
                 stillGivingToPlayers = False
