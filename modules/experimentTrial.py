@@ -18,7 +18,7 @@ def run(context):
 
     possible_targets = [0, 1, 2, 3]
     context['target'] = random.choice(possible_targets)
-    context['nonTargetList'] = filter(lambda x: x != context['target'], possible_targets)
+    context['nonTargetList'] = [x for x in possible_targets if x != context['target']]
     context['numberOfChanges'] = 0
     context['changeProb'] = 0.5
     context['attentionDuration'] = context['options']['blockLength']

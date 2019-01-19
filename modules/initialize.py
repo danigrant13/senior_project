@@ -41,7 +41,7 @@ windowY = 1080
 def run(context):
     infoDlg = gui.DlgFromDict(dictionary=initialOptions, title='Attention study', fixed=['Date'])
     if not infoDlg.OK:
-        print 'User Cancelled'
+        print('User Cancelled')
         core.quit()
 
     win = visual.Window(
@@ -143,33 +143,33 @@ def __validate(options):
     letterPause = options['Letter blink duration (secs)']
 
     if gender not in ['f', 'm']:
-        print 'Error: gender mut be on of f or m!'
-        print 'Subject number was set to: ' + str(options['   Subject number'])
+        print('Error: gender mut be on of f or m!')
+        print('Subject number was set to: ' + str(options['   Subject number']))
         core.quit()
 
     #check subject number for integer format
     try:
         subject = int(options['   Subject number'])
     except:
-        print 'Error: subject number must be a positive integer!'
-        print 'Subject number was set to: ' + str(options['   Subject number'])
+        print('Error: subject number must be a positive integer!')
+        print('Subject number was set to: ' + str(options['   Subject number']))
         core.quit()
 
     try:
         age = int(options['   Age'])
     except:
-        print 'Error: age must be a positive integer!'
-        print 'age was set to: ' + str(options['   Age'])
+        print('Error: age must be a positive integer!')
+        print('age was set to: ' + str(options['   Age']))
         core.quit()
     #check subject number for range
     if not subject>=0:
-        print 'Error: subject number must be a positive integer!'
-        print 'Subject number was set to: ' + str(options['   Subject number'])
+        print('Error: subject number must be a positive integer!')
+        print('Subject number was set to: ' + str(options['   Subject number']))
         core.quit()
 
     if not age>=18:
-        print 'Error: must be 18 years or older'
-        print 'age was set to: ' + str(options['   Age'])
+        print('Error: must be 18 years or older')
+        print('age was set to: ' + str(options['   Age']))
         core.quit()
 
     return {

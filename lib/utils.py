@@ -3,7 +3,7 @@ from psychopy import core, event
 def proceedOrQuit(win, keys = ['space', 'escape']):
     input = event.waitKeys(keyList = keys)
     if 'escape' in input:
-        print input
+        print(input)
         win.close()
         core.quit()
     return input

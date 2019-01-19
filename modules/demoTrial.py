@@ -127,7 +127,7 @@ def screen4(win, textStim):
 
 def drawInstructions(win, instructions, demoPic, count=3):
     demoPic.draw()
-    for index in xrange(0, count):
+    for index in range(0, count):
         instructions[index].draw()
     win.flip()
 
