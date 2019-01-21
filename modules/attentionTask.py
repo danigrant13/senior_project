@@ -210,7 +210,9 @@ def run(context):
 
     if shouldChange:
         imageList[target].setImage(changeSide1)
-    context['attentionResults'] = {
+
+    trialNum = context['trialNum']
+    context['attentionResults' + str(trialNum)] = {
         'successes': successes,
         'mistakes': mistakes,
         'actualChanges': actualChanges,
@@ -226,5 +228,5 @@ def run(context):
 
     for image in imageList:
         image.setOri(0)
-    
+
     return context

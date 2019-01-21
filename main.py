@@ -1,6 +1,7 @@
-from modules import trustGameInstructions2, attentionGameInstructions, initialize, practiceTrial, controlTrial,\
-                    experimentTrial, practiceTrustGame, experimentTrustGame, genReport, setCollectData, thankYou,\
-                    trustGameInstructions, trustGameTransition
+from modules import attentionGameInstructions, attentionRotationQuestionaire, controlTrial,\
+                    experimentTrial, experimentTrustGame, genReport, initialize, practiceTrial,\
+                    practiceTrustGame, setCollectData, thankYou, trustGameInstructions,\
+                    trustGameInstructions2, trustGameTransition
 from lib.runner import go
 
 modules = [
@@ -14,6 +15,7 @@ modules = [
     experimentTrial,
     trustGameTransition,
     experimentTrustGame,
+    attentionRotationQuestionaire,
     genReport,
     thankYou
 ] 

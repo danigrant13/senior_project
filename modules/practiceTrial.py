@@ -6,8 +6,6 @@ from lib.runner import go
 subModules = [
     practiceAttentionInstructions,
     attentionTask,
-    attentionChangeQuiz,
-    attentionTaskFeedback
 ]
 
 def run(context):
@@ -24,7 +22,7 @@ def run(context):
     context['changeProb'] = __changeProb(context)
     context['attentionDuration'] = context['options']['practiceLength']
 
-    context['trialNum'] = 0
+    context['trialNum'] = -1
 
     return go(subModules, context)
 

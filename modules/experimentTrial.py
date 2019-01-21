@@ -7,8 +7,6 @@ subModules = [
     experimentalAttentionIntro,
     attentionTask,
     gatherRatings,
-    attentionChangeQuiz,
-    attentionTaskFeedback,
 ]
 
 def run(context):

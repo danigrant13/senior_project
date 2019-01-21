@@ -1,11 +1,18 @@
 from psychopy import visual
 from lib.utils import proceedOrQuit
 
+def __trialHumanReadable(trialNum):
+    if trialNum < 0:
+        return "Practice Trial 1"
+    elif trialNum == 0:
+        return "Practice Trial 2"
+    return "Experiment Trial"
+
 def run(context):
     win = context['window']
     trialNum = context['trialNum']
 
-    results = context['attentionResults']
+    results = context['attentionResults' + str(trialNum)]
     actualChanges = results['actualChanges']
     target = results['target']
     successes = results['successes']
@@ -22,14 +29,14 @@ def run(context):
         feedbackImageA = visual.ImageStim(win,image=side1,mask=None,units='norm',pos=[-0.3,-0.72],size=[0.45,0.6])
         feedbackImageB = visual.ImageStim(win,image=side2,mask=None,units='norm',pos=[0.3,-0.72],size=[0.45,0.6])
         if actualChanges>1:
-            feedbackChange = visual.TextStim(win,'Your performance on trial ' + str(trialNum) +
+            feedbackChange = visual.TextStim(win,'Your performance on: ' + __trialHumanReadable(trialNum) +
                 '\n\nVowel task:\n     Correct responses: ' + str(int(successes)) +
                 '\n     Incorrect responses: ' + str(int(mistakes)) + '\n\nImage change task:\n     Image ' +
                 changeOptions[target] + ' changed ' + str(actualChanges) +
                 ' times (see below).\n\n***Press the SPACE key to proceed when ready***',
                 pos=[0,0.5],height=0.06)
         else:
-            feedbackChange = visual.TextStim(win,'Your performance on trial ' + str(trialNum) +
+            feedbackChange = visual.TextStim(win,'Your performance on: ' + __trialHumanReadable(trialNum) +
                 '\n\nVowel task:\n     Correct responses: ' + str(int(successes)) + '\n     Incorrect responses: ' +
                 str(int(mistakes)) + '\n\nImage change task:\n     Image ' + changeOptions[target] + ' changed ' + 
                 str(actualChanges) +
@@ -39,7 +46,7 @@ def run(context):
         feedbackImageA.draw()
         feedbackImageB.draw()
     else:
-        feedbackNoChange = visual.TextStim(win,'Your performance on trial ' + str(trialNum) +
+        feedbackNoChange = visual.TextStim(win,'Your performance on: ' + __trialHumanReadable(trialNum) +
                 '\n\nVowel task:\n     Correct responses: ' + str(int(successes)) + 
                 '\n     Incorrect responses: ' + str(int(mistakes)) + '\n\nImage change task:\n     ' +
                 'No images changed during this trial\n\n***Press the SPACE key to proceed when ready***',

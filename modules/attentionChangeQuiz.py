@@ -9,7 +9,7 @@ def __drawImages(imageList, markerList):
 def __dataHeaders():
     return [
         "Did any of the images change during the trial? (y/n)",
-        "Which image changed? (A, B, C, D)",
+        "Which image changed? (A B C D)",
         "How many times did this image change?",
         "Most frequent:",
         "2nd most frequent:",
