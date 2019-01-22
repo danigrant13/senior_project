@@ -75,13 +75,13 @@ The basic layout of the trial will look like this:{}
 """.format('\n\n\n', '\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n')
 
 summaryTextE = """
-    Now, you choose other participant to send money to. In this case, you choose participant B.{}
+    Now, you choose other participants to send money to. In this case, you choose participant B.{}
 The basic layout of the trial will look like this:{}
 """.format('\n\n\n\n', '\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n')
 
 summaryTextF = """
 You decide to send participant B $2.00, which is multiplied by 3 to equal $6.00 and added to B's 
-                              account to total to $11.00. Your account now has $4.00.{}
+                              account to total to $11.00. Your account now has $2.00.{}
 The basic layout of the trial will look like this:{}
 """.format('\n\n\n', '\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n')
 
@@ -180,12 +180,12 @@ def run(context):
         [
             pressSpaceStim,
             visual.TextStim(win, summaryTextH, pos=[0, 0.05],height=0.07,wrapWidth=1.7),
-            visual.ImageStim(win, image='demoPicH_I.jpg', mask=None, units='norm', pos=[0, -0.1], size=[0.88, 1.0])
+            visual.ImageStim(win, image='demoPicH.jpg', mask=None, units='norm', pos=[0, -0.1], size=[0.88, 1.0])
         ],
         [
             pressSpaceStim,
             visual.TextStim(win, summaryTextI, pos=[0, 0.15],height=0.06,wrapWidth=1.7),
-            visual.ImageStim(win, image='demoPicH_I.jpg', mask=None, units='norm', pos=[0, -0.1], size=[0.88, 1.0])
+            visual.ImageStim(win, image='demoPicI.jpg', mask=None, units='norm', pos=[0, -0.1], size=[0.88, 1.0])
         ],
         [
             pressSpaceStim,
