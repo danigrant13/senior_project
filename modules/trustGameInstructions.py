@@ -14,14 +14,14 @@ Now, we will describe Task #2 \
 pressSpace = "Press the SPACE key to continue reading the instructions."
 
 summaryText = """
-In Game #2, you will again be presented with a screen surrounded by four photos of previous participants. \
+In Task #2, you will again be presented with a screen surrounded by four photos of previous participants. \
 They will be labeled A, B, C, and D. In addition, you will be given a letter designation, 'E', ]
 to indicate you are a player in this game.{}
      The basic layout of the trial will look like this:{}
 """.format('\n\n', '\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n')
 
 summaryText2 = """
-In Game #2, each player (including you) will be allotted $5.00 each in their personal bank.{}
+In Task #2, each player (including you) will be allotted $5.00 each in their personal bank.{}
      The basic layout of the trial will look like this:{}
 """.format('\n\n', '\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n')
 

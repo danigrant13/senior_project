@@ -195,7 +195,7 @@ def run(context):
             gettingInput = False
 
 
-    screen4(win, screenStim)
-    input = proceedOrQuit(win)
+    #screen4(win, screenStim)
+    #input = proceedOrQuit(win)
 
     return context
