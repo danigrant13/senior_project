@@ -169,11 +169,14 @@ def __dataHeaders():
 
 def __setData(context, giftOrder, textBoxes, pictures):
     values = []
+    headers = __dataHeaders()
     for index in giftOrder:
         values.append(pictures[index])
         values.append((getTextBoxAmount(textBoxes[index]) - 5.0) / 3)
 
-    context['report']['headers'] += __dataHeaders()
+    values += ["." for x in range(len(headers) - len(values))]
+
+    context['report']['headers'] += headers
     context['report']['data'] += values
 
 def run(context):
