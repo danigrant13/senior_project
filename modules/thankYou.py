@@ -1,7 +1,9 @@
 from psychopy import visual
 from lib.utils import proceedOrQuit
 
-thankYou = "Thank you for taking part in this experiment!"
+thankYou = """          Thank you for participating in these tasks! 
+Please, go get the experimenter so she can show you 
+                      the last part of the study."""
 spaceBar = "When you are ready, press the SPACE key to close the program."
 
 def run(context):
