@@ -18,19 +18,19 @@ initialOptions = {
 
 demographicImages = {
     'f': [
-        ['WF_1.jpg', 'WF_2.jpg', 'WF_3.jpg', 'WF_4.jpg', 'F1'],
-        ['BF_1.jpg', 'BF_2.jpg', 'BF_3.jpg', 'BF_4.jpg', 'F2'],
-        ['AF_1.jpg', 'AF_2.jpg', 'AF_3.jpg', 'AF_4.jpg', 'F3'],
-        ['LF_1.jpg', 'LF_2.jpg', 'LF_3.jpg', 'LF_4.jpg', 'F4'],
-        ['LF_1.jpg', 'LF_2.jpg', 'LF_3.jpg', 'LF_4.jpg', 'F5']
+        ['F_1.jpg', 'F_2.jpg', 'F_3.jpg', 'F_4.jpg', 'F1'],
+        ['F_5.jpg', 'F_6.jpg', 'F_7.jpg', 'F_8.jpg', 'F2'],
+        ['F_9.jpg', 'F_10.jpg', 'F_11.jpg', 'F_12.jpg', 'F3'],
+        ['F_13.jpg', 'F_14.jpg', 'F_15.jpg', 'F_16.jpg', 'F4'],
+        ['F_17.jpg', 'F_18.jpg', 'F_19.jpg', 'F_20.jpg', 'F5']
     ],
     'pf': ['PF_1.jpg', 'PF_2.jpg', 'PF_3.jpg', 'PF_4.jpg', 'PF_1b.jpg'],
     'm': [
-        ['WM_1.jpg', 'WM_2.jpg', 'WM_3.jpg', 'WM_4.jpg', 'M1'],
-        ['BM_1.jpg', 'BM_2.jpg', 'BM_3.jpg', 'BM_4.jpg', 'M2'],
-        ['AM_1.jpg', 'AM_2.jpg', 'AM_3.jpg', 'AM_4.jpg', 'M3'],
-        ['LM_1.jpg', 'LM_2.jpg', 'LM_3.jpg', 'LM_4.jpg', 'M4'],
-        ['LM_1.jpg', 'LM_2.jpg', 'LM_3.jpg', 'LM_4.jpg', 'M5']
+        ['M_1.jpg', 'M_2.jpg', 'M_3.jpg', 'M_4.jpg', 'M1'],
+        ['M_5.jpg', 'M_6.jpg', 'M_7.jpg', 'M_8.jpg', 'M2'],
+        ['M_9.jpg', 'M_10.jpg', 'M_11.jpg', 'M_12.jpg', 'M3'],
+        ['M_13.jpg', 'M_14.jpg', 'M_15.jpg', 'M_16.jpg', 'M4'],
+        ['M_17.jpg', 'M_18.jpg', 'M_19.jpg', 'M_20.jpg', 'M5']
     ],
     'pm': ['PM_1.jpg','PM_2.jpg', 'PM_3.jpg', 'PM_4.jpg', 'PM_1b.jpg'],
 }
@@ -52,10 +52,10 @@ def run(context):
     )
 
     imageList = [
-        visual.ImageStim(win,image='AF_1.jpg',mask=None,units='norm',pos=[-0.7,0.7],size=[0.375,0.5]),
-        visual.ImageStim(win,image='AF_2.jpg',mask=None,units='norm',pos=[0.7,0.7],size=[0.375,0.5]),
-        visual.ImageStim(win,image='AF_3.jpg',mask=None,units='norm',pos=[-0.7,-0.7],size=[0.375,0.5]),
-        visual.ImageStim(win,image='AF_4.jpg',mask=None,units='norm',pos=[0.7,-0.7],size=[0.375,0.5])
+        visual.ImageStim(win,image='F_1.jpg',mask=None,units='norm',pos=[-0.7,0.7],size=[0.375,0.5]),
+        visual.ImageStim(win,image='F_2.jpg',mask=None,units='norm',pos=[0.7,0.7],size=[0.375,0.5]),
+        visual.ImageStim(win,image='F_3.jpg',mask=None,units='norm',pos=[-0.7,-0.7],size=[0.375,0.5]),
+        visual.ImageStim(win,image='F_4.jpg',mask=None,units='norm',pos=[0.7,-0.7],size=[0.375,0.5])
     ]
 
     markerList = [
