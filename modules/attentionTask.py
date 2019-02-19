@@ -57,6 +57,7 @@ def run(context):
     changeProb = context['changeProb']
     shouldChange = numberOfChanges > 0
     actualChanges = 0
+    rotateCounts = [0, 0, 0, 0]
 
     duration=context['attentionDuration']
     letterInterval = context['options']['letterInterval']
@@ -151,6 +152,8 @@ def run(context):
             else:
                 currentRotator = random.choice([0, 1, 2, 3])
 
+            rotateCounts[currentRotator] += 1
+
         #update images
         if rotating:
             __drawImages(imageList)
@@ -218,6 +221,8 @@ def run(context):
         'actualChanges': actualChanges,
         'numberOfChanges': numberOfChanges,
         'target': target,
+        'maxRotator': rotateCounts.index(max(rotateCounts)),
+        'maxRotateCount': max(rotateCounts),
         'side1': changeSide1,
         'side2': changeSide2
     }

@@ -1,12 +1,29 @@
 from psychopy import visual
 from lib.utils import proceedOrQuit
 
+def __getTrialImageKey(trialNum):
+    if trialNum < 0:
+        return 'practiceImages'
+
+    elif trialNum == 0:
+        return 'controlImages'
+    return 'trialImages'
+
 def __trialHumanReadable(trialNum):
     if trialNum < 0:
         return "Practice Trial 1"
     elif trialNum == 0:
         return "Practice Trial 2"
     return "Experiment Trial"
+
+def __setData(context, results):
+    trialNum = context['trialNum']
+    trialImages = context[__getTrialImageKey(trialNum)]
+    target = results['target']
+    maxRotator = results['maxRotator']
+    maxRotateCount = results['maxRotateCount']
+    context['report']['headers'] += ["Target Image", "Image that rotated the most", "Rotate Count"]
+    context['report']['data'] += [trialImages[target], trialImages[maxRotator], maxRotateCount]
 
 def run(context):
     win = context['window']
@@ -58,5 +75,8 @@ def run(context):
     
     win.flip()
     proceedOrQuit(win)
+
+    if context['collectData']:
+        __setData(context, results)
 
     return context
